@@ -1,0 +1,27 @@
+/**
+ *
+ */
+@media print
+{
+	.dataTables_wrapper .dataTables_info,
+	.dataTables_wrapper .dataTables_paginate,
+	.dataTables_wrapper .dataTables_length,
+	.dataTables_wrapper .dataTables_filter,
+	.dataTables_wrapper .sorting_asc:after, 
+	.dataTables_wrapper .sorting_desc:after,
+	.dataTables_wrapper .sorting:after,
+	.content-header-buttons 
+	{
+		display: none !important;
+	}
+
+	.content-header
+	{
+		display: block !important;
+	}
+
+	.action_col
+	{
+		display: none !important;
+	}
+}

@@ -1,0 +1,29 @@
+/**
+ *
+ */
+
+.content-header-buttons {
+	position: absolute;
+	top: 15px;
+	right: 15px;
+}
+
+.fa-ch {
+	margin-left: 5px;
+}
+
+body > .overlay-wrapper {
+    z-index: 1050;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+}
+
+.ca-countdown {
+	display: none;
+}
+
+.dtr-details {
+    width: 100%;
+}
