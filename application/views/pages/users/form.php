@@ -25,6 +25,12 @@ $module = isset($module) ? $module: "";
 				</div>
 				<div class="col-xs-12 col-sm-6 ">
 					<div class="form-group">
+						<label for="middle_name">Middle Name</label>
+						<input type="text" class="form-control" name="middle_name" id="middle_name" value="<?php if (isset($form_data['middle_name'])) echo $form_data['middle_name']; ?>" />
+					</div>	
+				</div>
+				<div class="col-xs-12 col-sm-6 ">
+					<div class="form-group">
 						<label for="role">Role</label>
 						<!-- <select id="role" class="form-control">
 							<option value="student">Student</option>
@@ -101,6 +107,8 @@ var saveForm = null, deleteData = null, generatePassCode = null, passcodeEl = nu
 window.addEventListener('load', function() {
 	(function($) {
 
+	if ( ! $) return;
+
 	saveForm = function() {
 		PageOverlay.show();
 		$('#user_edit').trigger('submit');
@@ -131,6 +139,13 @@ window.addEventListener('load', function() {
 	});
 
 	$('.sys-form-container').removeClass('hide');
+
+	<?php if ( ! (
+		$this->core->get_session('role_code') == 'admin' ||
+		$this->core->get_session('role_code') == 'registrar' 
+	)) : ?>
+	$('#department > [value=admin]').attr('disabled', true);
+	<?php endif; ?>
 
 	})(jQuery);
 });
@@ -200,7 +215,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	<?php
 	$dept_code = $this->core->get_session('dept_code');
-	if ($dept_code !== 'admin') : ?>
+	if ( ! (
+		$dept_code == 'admin' ||
+		$dept_code == 'registrar'
+	)) : ?>
 
 	var deptCodeEl = document.getElementById('department');
 

@@ -12,8 +12,10 @@ class Department extends CI_Controller {
 		parent::__construct();
 		$this->load->model('department_model', 'department');
 
-		if ($this->core->get_session('role_code') != 'admin')
-		{
+		if ( ! (
+			$this->core->get_session('role_code') == 'admin' ||
+			$this->core->get_session('role_code') == 'registrar'
+		)) {
 			show_404(); exit;
 		}
 	}

@@ -86,9 +86,11 @@ class Core_model extends CI_Model
 	 *
 	 *
 	 */
-	public function get_session($name)
+	public function get_session($name = NULL)
 	{
 		$session = $this->session->userdata(SITE_CODE);
+
+		if ( ! $name) return $session; 
 
 		return isset($session[$name]) ? $session[$name]: NULL;
 	}

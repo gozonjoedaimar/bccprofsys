@@ -73,8 +73,9 @@ class User_model extends CI_Model
 
 		$this->db->from('users');
 
-		if ($module && $this->role_code != 'admin') {
+		if ($module && ! ($this->role_code == 'admin' || $this->role_code == 'registrar')) {
 			$this->db->where('department', $this->core->get_session('dept_code'));
+			$this->db->where('role', $module);
 		}
 
 		$user_data = $this->db->get()->result_array();
@@ -181,6 +182,7 @@ class User_model extends CI_Model
 		if ($id == 'root') {
 			$this->core->set_session('name', 'Root');
 			$this->core->set_session('department', 'Root');
+			$this->core->set_session('dept_code', 'admin');
 			$this->core->set_session('role', 'Root');
 			$this->core->set_session('role_code', 'admin');
 			$this->core->set_session('memspan', date('M. Y'));			

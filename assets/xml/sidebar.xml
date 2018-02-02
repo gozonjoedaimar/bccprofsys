@@ -23,6 +23,67 @@
 		</menu>
 	</user>
 	<user>
+		<name>registrar</name>
+		<menu>
+			<link>
+				<name>Accounts</name>
+				<icon>fa-users</icon>
+				<sub>
+					<link>
+						<name>List</name>
+						<url>/users</url>
+					</link>
+					<link>
+						<name>Roles</name>
+						<url>/users/roles</url>
+					</link>
+					<link>
+						<name>Department</name>
+						<url>/department</url>
+					</link>
+				</sub>
+			</link>
+			<link>
+				<name>Grades</name>
+				<icon>fa-area-chart</icon>
+				<url>/grades</url>
+				<visible>false</visible>
+			</link>
+			<link>
+				<name>Schedule</name>
+				<icon>fa-calendar</icon>
+				<url>/schedule</url>
+				<visible>false</visible>
+			</link>
+			<link>
+				<name>Classroom</name>
+				<icon>fa-cubes</icon>
+				<url>/classroom</url>
+				<visible>false</visible>
+			</link>
+			<link>
+				<name>Updates</name>
+				<icon>fa-refresh</icon>
+				<visible>false</visible>
+			</link>
+			<link>
+				<name>Students</name>
+				<icon>fa-users</icon>
+				<url>/users/student</url>
+			</link>
+			<link>
+				<name>Teachers</name>
+				<icon>fa-slideshare</icon>
+				<url>/users/teacher</url>
+			</link>
+			<link>
+				<name>Coordinators</name>
+				<icon>fa-rocket</icon>
+				<url>/users/dept_coordinator</url>
+			</link>
+		</menu>
+	</user>
+	<user>
 		<name>admin</name>
 		<menu>
 			<link>
@@ -47,20 +108,24 @@
 				<name>Grades</name>
 				<icon>fa-area-chart</icon>
 				<url>/grades</url>
+				<visible>false</visible>
 			</link>
 			<link>
 				<name>Schedule</name>
 				<icon>fa-calendar</icon>
 				<url>/schedule</url>
+				<visible>false</visible>
 			</link>
 			<link>
 				<name>Classroom</name>
 				<icon>fa-cubes</icon>
 				<url>/classroom</url>
+				<visible>false</visible>
 			</link>
 			<link>
 				<name>Updates</name>
 				<icon>fa-refresh</icon>
+				<visible>false</visible>
 			</link>
 			<link>
 				<name>Students</name>

@@ -73,6 +73,7 @@ class Users extends CI_Controller
 
 				if ( ! (
 					$this->role_code == 'admin' ||
+					$this->role_code == 'registrar' ||
 					$this->role_code == 'dept_coordinator'
 				)) {
 					show_404(); exit;
@@ -82,7 +83,10 @@ class Users extends CI_Controller
 				$data['user']['role'] = "Dept. Coordinator";
 				$data['title'] = "Dept. Coordinators";
 
-				if ($this->role_code != 'admin') {
+				if ( ! (
+					$this->role_code == 'admin' ||
+					$this->role_code == 'registrar'
+				) ) {
 					show_404(); exit;
 				}
 			}
@@ -90,13 +94,19 @@ class Users extends CI_Controller
 				$data['user']['role'] = "Admin";
 				$data['title'] = "Admins";
 
-				if ($this->role_code != 'admin') {
+				if ( ! (
+					$this->role_code == 'admin' ||
+					$this->role_code == 'registrar'
+				) ) {
 					show_404(); exit;
 				}
 			}
 		}
 		else {
-			if ($this->role_code != 'admin') {
+			if ( ! (
+				$this->role_code == 'admin' ||
+				$this->role_code == 'registrar'
+			) ) {
 				show_404(); exit;
 			}
 		}
@@ -141,7 +151,10 @@ class Users extends CI_Controller
 	 */
 	public function roles($mode = NULL, $id = NULL)
 	{
-		if ($this->role_code != 'admin') {
+		if ( ! (
+			$this->role_code == 'admin' || 
+			$this->role_code == 'registrar'
+		)) {
 			show_404(); exit;
 		}
 		if ($mode == 'create') {
@@ -467,7 +480,10 @@ class Users extends CI_Controller
 	 */
 	public function list_role()
 	{
-		if ($this->role_code != 'admin') {
+		if ( ! (
+			$this->role_code == 'admin' ||
+			$this->role_code == 'registrar'
+		)) {
 			show_404(); exit;
 		}
 		// $dbo = new Database_Object('user_roles');
