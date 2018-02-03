@@ -216,6 +216,8 @@
 <script>
   $.widget.bridge('uibutton', $.ui.button);
 </script>
+<!-- jquery validate -->
+<script src="/dist/js/jquery.validate.js"></script>
 <!-- Bootstrap 3.3.7 -->
 <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- DataTables -->

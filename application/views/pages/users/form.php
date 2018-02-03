@@ -20,7 +20,7 @@ $module = isset($module) ? $module: "";
 				<div class="col-xs-12 col-sm-6 ">
 					<div class="form-group">
 						<label for="last_name">Last Name</label>
-						<input type="text" class="form-control" name="last_name" id="last_name" value="<?php if (isset($form_data['last_name'])) echo $form_data['last_name']; ?>" />
+						<input type="text" class="form-control" name="last_name" required id="last_name" value="<?php if (isset($form_data['last_name'])) echo $form_data['last_name']; ?>" />
 					</div>	
 				</div>
 				<div class="col-xs-12 col-sm-6 ">
@@ -40,7 +40,7 @@ $module = isset($module) ? $module: "";
 						</select> -->
 						<?php
 							$selected = isset($form_data['role']) ? $form_data['role']: ""; 
-							$this->layout->get_select('role', 'role', $this->user->list_role(), $selected)
+							$this->layout->get_select('role', 'role', $this->user->list_role(), $selected, TRUE)
 						?>
 					</div>	
 				</div>
@@ -55,7 +55,7 @@ $module = isset($module) ? $module: "";
 						</select> -->
 						<?php
 							$selected = isset($form_data['department']) ? $form_data['department']: ""; 
-							$this->layout->get_select('department', 'department', $this->department->listing(), $selected);
+							$this->layout->get_select('department', 'department', $this->department->listing(), $selected, TRUE);
 						?>
 					</div>	
 				</div>
@@ -110,8 +110,12 @@ window.addEventListener('load', function() {
 	if ( ! $) return;
 
 	saveForm = function() {
-		PageOverlay.show();
-		$('#user_edit').trigger('submit');
+		var _frm = $('#user_edit');
+
+		if (_frm.valid()) {
+			PageOverlay.show();
+			_frm.trigger('submit');
+		}
 	}
 
 	deleteData = function() {
@@ -141,8 +145,7 @@ window.addEventListener('load', function() {
 	$('.sys-form-container').removeClass('hide');
 
 	<?php if ( ! (
-		$this->core->get_session('role_code') == 'admin' ||
-		$this->core->get_session('role_code') == 'registrar' 
+		$this->core->get_session('role_code') == 'admin' 
 	)) : ?>
 	$('#department > [value=admin]').attr('disabled', true);
 	<?php endif; ?>
@@ -177,7 +180,13 @@ document.addEventListener('DOMContentLoaded', function() {
 	}
 
 
-		<?php if ($module == 'student') : ?>
+		<?php if (
+			$module == 'student' ||
+			(
+				$this->core->get_session('role_code') == 'admin' ||
+				$this->core->get_session('role_code') == 'registrar'
+			)
+		) : ?>
 
 		if (recIdEl) recIdEl.removeAttribute('disabled');
 
@@ -214,7 +223,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	<?php endif; ?>
 
 	<?php
-	$dept_code = $this->core->get_session('dept_code');
+	$dept_code = $this->core->get_session('role_code');
 	if ( ! (
 		$dept_code == 'admin' ||
 		$dept_code == 'registrar'

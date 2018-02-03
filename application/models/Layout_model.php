@@ -16,9 +16,9 @@ class Layout_model extends Core_model {
 	 * 
 	 *
 	 */
-	public function get_select($name, $id, $collection = array(), $selected = "")
+	public function get_select($name, $id, $collection = array(), $selected = "", $required = FALSE)
 	{
-		$this->load->view('components/select-fc', array('collection'=>$collection, 'name'=>$name, 'id'=>$id, 'selected'=>$selected));
+		$this->load->view('components/select-fc', array('collection'=>$collection, 'name'=>$name, 'id'=>$id, 'selected'=>$selected, 'required'=>$required));
 	}
 
 	/**

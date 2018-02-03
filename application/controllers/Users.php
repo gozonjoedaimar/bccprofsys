@@ -152,8 +152,7 @@ class Users extends CI_Controller
 	public function roles($mode = NULL, $id = NULL)
 	{
 		if ( ! (
-			$this->role_code == 'admin' || 
-			$this->role_code == 'registrar'
+			$this->role_code == 'admin'
 		)) {
 			show_404(); exit;
 		}

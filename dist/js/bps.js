@@ -7,6 +7,8 @@ var PageOverlay = {};
 /* Init events */
 (function($) {
 
+if ( ! $) return;
+
 /* Define fn */
 triggerTree = function(el) {
 	var $el = $(el);
@@ -78,7 +80,6 @@ window.addEventListener('beforeunload', function() {
 	// Do something here
 });
 
-
 console.log("Scripts run successfully");
 
-})(jQuery);
+})(window.jQuery);

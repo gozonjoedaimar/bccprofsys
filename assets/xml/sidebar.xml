@@ -36,6 +36,7 @@
 					<link>
 						<name>Roles</name>
 						<url>/users/roles</url>
+						<visible>false</visible>
 					</link>
 					<link>
 						<name>Department</name>

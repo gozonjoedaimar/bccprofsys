@@ -1,4 +1,4 @@
-<select id="<?php echo $id ?>" name="<?php echo $name ?>" class="form-control">
+<select id="<?php echo $id ?>" name="<?php echo $name ?>" class="form-control" <?php echo ($required) ? 'required': '' ?> >
 	<?php if ($collection) : ?>
 		<?php foreach($collection as $option) : ?>
 			<option value="<?php echo $option['code'] ?>" <?php if ($selected == $option['code']) echo "selected" ?>><?php echo $option['name'] ?></option>
