@@ -23,6 +23,7 @@ $module = isset($module) ? $module: "";
 						<input type="text" class="form-control" name="last_name" required id="last_name" value="<?php if (isset($form_data['last_name'])) echo $form_data['last_name']; ?>" />
 					</div>	
 				</div>
+				<div class="clearfix"></div>
 				<div class="col-xs-12 col-sm-6 ">
 					<div class="form-group">
 						<label for="middle_name">Middle Name</label>
@@ -44,6 +45,7 @@ $module = isset($module) ? $module: "";
 						?>
 					</div>	
 				</div>
+				<div class="clearfix"></div>
 				<div class="col-xs-12 col-sm-6 ">
 					<div class="form-group">
 						<label for="department">Department</label>
@@ -65,6 +67,7 @@ $module = isset($module) ? $module: "";
 						<input type="text" class="form-control" name="username" id="username" value="<?php if (isset($form_data['username'])) echo $form_data['username']; ?>" />
 					</div>	
 				</div>
+				<div class="clearfix"></div>
 				<div class="col-xs-12 col-sm-6 ">
 					<div class="form-group">
 						<label for="passcode">Passcode</label>
