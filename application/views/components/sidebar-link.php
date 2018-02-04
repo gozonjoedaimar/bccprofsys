@@ -1,6 +1,8 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 
+<?php if ( ! $main) : ?>
 <ul class="<?php echo ($main) ? "sidebar-menu tree": "treeview-menu" ?>">
+<?php endif; ?>
 	<?php foreach ($links as $link) {
 			$is_visible = (property_exists($link, 'visible') && $link->visible == 'false') ? "hide": "";
 		?>
@@ -8,7 +10,7 @@
 			<li class="treeview <?php echo $is_visible ?>">
 				<a href="<?php echo $link->url; ?>">
 					<i class="fa <?php echo (property_exists($link, 'icon') && $link->icon) ? $link->icon: "fa-circle-o";  ?>"></i>
-					<?php echo $link->name; ?>
+					<span><?php echo $link->name; ?></span>
 					<span class="pull-right-container">
 						<i class="fa fa-angle-left pull-right"></i>
 					</span>
@@ -19,9 +21,11 @@
 			<li class="<?php echo $is_visible; ?>">
 				<a href="<?php echo $link->url; ?>">
 					<i class="fa <?php echo (property_exists($link, 'icon') && $link->icon) ? $link->icon: "fa-circle-o";  ?>"></i>
-					<?php echo $link->name; ?>
+					<span><?php echo $link->name; ?></span>
 				</a>
 			</li>
 		<?php } ?>
 	<?php } ?>
+<?php if ( ! $main) : ?>
 </ul>
+<?php endif; ?>

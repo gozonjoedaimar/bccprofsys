@@ -183,11 +183,24 @@
 			<link>
 				<name>Updates</name>
 				<icon>fa-refresh</icon>
+				<visible>false</visible>
 			</link>
 			<link>
-				<name>Students</name>
-				<icon>fa-users</icon>
-				<url>/users/student</url>
+				<name>Classroom</name>
+				<icon>fa-cubes</icon>
+				<url>/classroom</url>
+				<sub>
+					<link>
+						<name>Classroom</name>
+						<!-- <icon>fa-cubes</icon> -->
+						<url>/classroom</url>
+					</link>
+					<link>
+						<name>Students</name>
+						<!-- <icon>fa-users</icon> -->
+						<url>/users/student</url>
+					</link>
+				</sub>
 			</link>
 			<link>
 				<name>Grades</name>
