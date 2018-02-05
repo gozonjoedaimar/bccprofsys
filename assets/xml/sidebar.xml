@@ -11,6 +11,7 @@
 			<link>
 				<name>Updates</name>
 				<icon>fa-refresh</icon>
+				<visible>false</visible>
 			</link>
 			<link>
 				<name>Subjects</name>
@@ -156,6 +157,7 @@
 			<link>
 				<name>Updates</name>
 				<icon>fa-refresh</icon>
+				<visible>false</visible>
 			</link>
 			<link>
 				<name>Students</name>
