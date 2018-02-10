@@ -25,6 +25,15 @@ class Dashboard extends CI_Controller {
 			elseif ($module == "admin") $data['user']['role'] = "Admin";
 		}
 
+		if ($this->core->get_session('role_code') == 'registrar')
+		{
+			redirect('registrar'); exit;
+		}
+		elseif ($this->core->get_session('role_code') == 'student')
+		{
+			redirect('student'); exit;
+		}
+
 		$this->load->view('head', $data);
 		$this->load->view('dashboard');
 		$this->load->view('footer');

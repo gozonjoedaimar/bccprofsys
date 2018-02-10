@@ -16,6 +16,7 @@
 			<link>
 				<name>Subjects</name>
 				<icon>fa-book</icon>
+				<visible>false</visible>
 			</link>
 			<link>
 				<name>Schedule</name>
