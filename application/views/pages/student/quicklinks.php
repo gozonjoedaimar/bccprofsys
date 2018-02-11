@@ -1,4 +1,54 @@
 <div class="row">
+  
+<div class="col-md-4">
+          <!-- Widget: user widget style 1 -->
+          <div class="box box-widget widget-user">
+            <!-- Add the bg color to the header using any of the bg-* classes -->
+            <div class="widget-user-header bg-aqua-active">
+              <h3 class="widget-user-username"><?php echo $this->core->get_session('name') ?></h3>
+              <h5 class="widget-user-desc"><?php echo $this->core->get_session('role') ?></h5>
+            </div>
+            <div class="widget-user-image">
+              <img class="img-circle" src="../dist/img/user2-160x160.jpg" alt="User Avatar">
+            </div>
+            <div class="box-footer">
+              <div class="row">
+                <div class="col-sm-4 border-right">
+                  <div class="description-block">
+                    <h5 class="description-header">Year</h5>
+                    <span class="description-text">1</span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-4 border-right">
+                  <div class="description-block">
+                    <h5 class="description-header">Section</h5>
+                    <span class="description-text">A</span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-4">
+                  <div class="description-block">
+                    <h5 class="description-header">Unit</h5>
+                    <span class="description-text">200</span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+              </div>
+              <!-- /.row -->
+            </div>
+          </div>
+          <!-- /.widget-user -->
+        </div>
+</div>
+
+<div class="row">
+
+
+
         <div class="col-lg-3 col-xs-6">
           <!-- small box -->
           <div class="small-box bg-blue">
