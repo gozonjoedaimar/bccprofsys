@@ -24,16 +24,12 @@ window.addEventListener('load', function() {
 
 dtTeacher_loadTable = $('#teacher_load_table').DataTable({
 	ajax: {
-		url: "<?php echo site_url('users/listing/teacher', SITE_SCHEME) ?>"
+		url: "<?php echo site_url('teacher_load/listing', SITE_SCHEME) ?>"
 	},
 	columns: [
 		{
 			title: "Name",
-			data: 'id',
-			render: function(data, type, row) {
-				var name = row.first_name + " " + row.last_name;
-				return name;
-			}
+			data: 'name'
 		},
 		{
 			title: "Date Created",
@@ -52,7 +48,7 @@ dtTeacher_loadTable = $('#teacher_load_table').DataTable({
 				var btnCnt = $("<div class='btn-group'></div>");
 				var edtBtnEl = $('<button type="button" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></button>');
 				edtBtnEl.attr({
-					onclick: "PageOverlay.show(); location.href='<?php echo site_url('teacher_load/view') ?>/" + data + "';"
+					onclick: "PageOverlay.show(); location.href='<?php echo site_url('teacher_load/edit') ?>/" + data + "';"
 				}).appendTo(btnCnt);
 				var delBtnEl = $('<button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>');
 				delBtnEl.attr({

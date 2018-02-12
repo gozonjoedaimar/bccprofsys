@@ -47,6 +47,39 @@ class Teacher_load extends CI_Controller {
 	}
 
 	/**
+	 * Index Page for this controller.
+	 *
+	 */
+	public function view($teacher_id)
+	{
+		$data = array(
+			'title'=>'Teacher_load',
+			'ch_btns'=>array(
+				$this->layout->getPrintBtn(array(
+						array(
+							'name'=>'onclick',
+							'value'=>'print()'
+						)
+					)
+				),
+				array(
+					'name'=>'New <i class="fa fa-ch fa-plus"></i>',
+					'class'=>'btn-success',
+					'attr'=>array(
+						array(
+							'name'=>'onclick',
+							'value'=>'location.href=\'' . site_url('teacher_load/add') . '\';'
+						)
+					)
+				)
+			)
+		);
+		$this->load->view('head', $data);
+		$this->load->view('pages/teacher_load_listing');
+		$this->load->view('footer');
+	}
+
+	/**
 	 *
 	 *
 	 */
