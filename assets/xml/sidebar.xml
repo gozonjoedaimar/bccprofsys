@@ -170,11 +170,12 @@
 				<icon>fa-slideshare</icon>
 				<sub>
 					<link>
-						<name>List</name>
+						<name>Teacher List</name>
 						<url>/users/teacher</url>
 					</link>
 					<link>
-						<name>Grade submission</name>
+						<name>Teacher Load</name>
+						<url>#!</url>
 					</link>
 				</sub>
 			</link>
@@ -225,16 +226,16 @@
 		<menu>
 			<link>
 				<name>Link 1</name>
-				<url></url>
+				<url>#!</url>
 				<icon>fa-dashboard</icon>
 				<sub>
 					<link>
 						<name>Sub Link 1</name>
-						<url></url>
+						<url>#!</url>
 						<sub>
 							<link>
 								<name>Sub Link Sub 1</name>
-								<url></url>
+								<url>#!</url>
 							</link>
 							<link>
 								<name>Sub Link Sub 2</name>
@@ -250,17 +251,17 @@
 					</link>
 					<link>
 						<name>Sub Link 2</name>
-						<url></url>
+						<url>#!</url>
 					</link>
 				</sub>
 			</link>
 			<link>
 				<name>Link 2</name>
-				<url></url>
+				<url>#!</url>
 			</link>
 			<link>
 				<name>Link 3</name>
-				<url></url>
+				<url>#!</url>
 			</link>
 			<link>
 				<name>Link 4</name>
@@ -268,11 +269,11 @@
 			</link>
 			<link>
 				<name>Link 5</name>
-				<url></url>
+				<url>#!</url>
 			</link>
 			<link>
 				<name>Link 6</name>
-				<url></url>
+				<url>#!</url>
 			</link>
 		</menu>
 	</user>
