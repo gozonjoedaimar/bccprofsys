@@ -67,4 +67,11 @@ class Notifications_model extends CI_Model {
 		// }
 
 	}
+
+	public function count()
+	{
+		$this->db->from('notifications');
+		$this->db->where('unread', 1);
+		return $this->db->count_all_results();
+	}
 }

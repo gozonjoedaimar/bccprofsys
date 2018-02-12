@@ -175,7 +175,7 @@
 					</link>
 					<link>
 						<name>Teacher Load</name>
-						<url>#!</url>
+						<url>teacher_load</url>
 					</link>
 				</sub>
 			</link>
