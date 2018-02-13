@@ -30,13 +30,22 @@ triggerTree = function(el) {
 // PageOverlay = Object.assign({}, PageOverlay, {
 PageOverlay = {
 	overlay: $('<div class="overlay-wrapper"><div class="overlay"><i class="fa fa-refresh fa-spin"></i></div></div>'),
-	show: function() {
-		this.overlay.appendTo('body');
-		return this.overlay.get(0);
+	plainOverlay: $('<div class="overlay-wrapper"><div class="overlay"></div></div>'),
+	show: function($plain) {
+		if ($plain) {
+			this.plainOverlay.appendTo('body');
+			return this.plainOverlay.get(0);
+		}
+		else {
+			this.overlay.appendTo('body');
+			return this.overlay.get(0);
+		}
 	},
 	hide: function() {
 		this.overlay.detach();
-		return this.overlay.get(0);
+		this.plainOverlay.detach();
+		// return this.overlay.get(0);
+		return;
 	}
 // });
 };
@@ -73,6 +82,16 @@ window.addEventListener('load', function() {
 	var caTimeout = setTimeout(function() {
 		caEls.remove();
 	}, 6000);
+
+
+	/* Close preloading screen */
+	setTimeout(function() {
+		$('body').toggleClass('loaded');
+		PageOverlay.show('plain');
+		setTimeout(function() {
+			PageOverlay.hide();
+		},1000);
+	}, 500);
 
 });
 

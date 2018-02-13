@@ -48,6 +48,17 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
+
+
+  <div id="loader-wrapper">
+    <div id="loader"></div>
+    <img src="/dist/img/bcc-logo.png" class="logo">
+    <h1 class="title">Bacolod City College Profiling System</h1>
+    <div class="loader-section section-left"></div>
+    <div class="loader-section section-right"></div>
+  </div>
+
+
 <div class="wrapper">
 
   <header class="main-header">
