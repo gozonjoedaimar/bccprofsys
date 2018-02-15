@@ -87,4 +87,73 @@ class Layout_model extends Core_model {
 
 		return $batch;
 	}
+
+
+	/**
+	 *
+	 */
+	public function time_selection()
+	{
+		$start = "07:00:00";
+		$end = "21:00:00";
+		$selection = [];
+
+		$time = $start;
+
+		while ($time != $end) {
+
+			$selection[] = [
+				'code'=>$time,
+				'name'=>date("h:i a", strtotime($time))
+			];
+
+			$curr = explode(':', $time);
+			$h = $curr[1] == "30" ? str_pad((intval($curr[0]) + 1), "0", 2): $curr[0];
+			$m = $curr[1] == "00" ? "30": "00";
+			$s = $curr[2];
+
+			$time = implode(':', [$h, $m, $s]);
+		}
+
+		return $selection;
+	}
+
+	/**
+	 *
+	 */
+	public function day_selection() 
+	{
+		$days = [
+			[
+				'code'=>'sun',
+				'name'=>"Sunday"
+			],
+			[
+				'code'=>'mon',
+				'name'=>"Monday"
+			],
+			[
+				'code'=>'tue',
+				'name'=>"Tuesday"
+			],
+			[
+				'code'=>'wed',
+				'name'=>"Wednesday"
+			],
+			[
+				'code'=>'thu',
+				'name'=>"Thursday"
+			],
+			[
+				'code'=>'fri',
+				'name'=>"Friday"
+			],
+			[
+				'code'=>'sat',
+				'name'=>"Saturday"
+			]
+		];
+
+		return $days;
+	}
 }

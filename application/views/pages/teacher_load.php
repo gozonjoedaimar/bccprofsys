@@ -50,14 +50,15 @@ dtTeacher_loadTable = $('#teacher_load_table').DataTable({
 			className: "text-nowrap action_col",
 			render: function(data) {
 				var btnCnt = $("<div class='btn-group'></div>");
-				var edtBtnEl = $('<button type="button" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></button>');
+				var edtBtnEl = $('<button type="button" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></button>');
 				edtBtnEl.attr({
 					onclick: "PageOverlay.show(); location.href='<?php echo site_url('teacher_load/view') ?>/" + data + "';"
 				}).appendTo(btnCnt);
 				var delBtnEl = $('<button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>');
 				delBtnEl.attr({
 					onclick: "if (confirm('Delete Teacher_load?')) location.href='<?php echo site_url('teacher_load/delete') ?>/" + data + "';"
-				}).appendTo(btnCnt);
+				});
+				// delBtnEl.appendTo(btnCnt);
 				return btnCnt.get(0).outerHTML;
 			}
 		}
@@ -80,6 +81,8 @@ dtTeacher_loadTable = $('#teacher_load_table').DataTable({
 createDept = function() {
 	location.href = "<?php echo site_url('teacher_load/add') ?>";
 }
+
+$('.content-header-buttons').hide();
 
 })(jQuery);
 

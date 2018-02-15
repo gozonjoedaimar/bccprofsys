@@ -48,7 +48,7 @@ dtTeacher_loadTable = $('#teacher_load_table').DataTable({
 				var btnCnt = $("<div class='btn-group'></div>");
 				var edtBtnEl = $('<button type="button" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></button>');
 				edtBtnEl.attr({
-					onclick: "PageOverlay.show(); location.href='<?php echo site_url('teacher_load/edit') ?>/" + data + "';"
+					onclick: "PageOverlay.show(); location.href='<?php echo site_url('teacher_load/edit') ?>/" + data + "/<?php echo isset($teacher_id) ? $teacher_id: '' ?>';"
 				}).appendTo(btnCnt);
 				var delBtnEl = $('<button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>');
 				delBtnEl.attr({

@@ -55,6 +55,7 @@ class Teacher_load extends CI_Controller {
 		$data = array(
 			'title'=>'Teacher_load',
 			'ch_btns'=>array(
+				$this->layout->getBackBtn(site_url('teacher_load')),
 				$this->layout->getPrintBtn(array(
 						array(
 							'name'=>'onclick',
@@ -68,11 +69,12 @@ class Teacher_load extends CI_Controller {
 					'attr'=>array(
 						array(
 							'name'=>'onclick',
-							'value'=>'location.href=\'' . site_url('teacher_load/add') . '\';'
+							'value'=>'location.href=\'' . site_url('teacher_load/add/' . $teacher_id) . '\';'
 						)
 					)
 				)
-			)
+			),
+			'teacher_id'=>$teacher_id
 		);
 		$this->load->view('head', $data);
 		$this->load->view('pages/teacher_load_listing');
@@ -83,12 +85,12 @@ class Teacher_load extends CI_Controller {
 	 *
 	 *
 	 */
-	public function add()
+	public function add($teacher_id)
 	{
 		$data = array(
 			'title'=>'Add new teacher_load',
 			'ch_btns'=>array(
-				$this->layout->getBackBtn(site_url('teacher_load')),
+				$this->layout->getBackBtn(site_url('teacher_load/view/' . $teacher_id)),
 				array(
 					'name'=>"Save <i class='fa fa-ch fa-save'></i>",
 					'class'=>'btn-success',
@@ -132,12 +134,12 @@ class Teacher_load extends CI_Controller {
 	 *
 	 *
 	 */
-	public function edit($id)
+	public function edit($id, $teacher_id)
 	{
 		$data = array(
 			'title'=>"Update teacher_load",
 			'ch_btns'=>array(
-				$this->layout->getBackBtn(site_url('teacher_load')),
+				$this->layout->getBackBtn(site_url('teacher_load/view/' . $teacher_id)),
 				array(
 					'name'=>'Delete <i class="fa fa-ch fa-trash"></i>',
 					'class'=>'btn-danger',
@@ -167,6 +169,8 @@ class Teacher_load extends CI_Controller {
 		if ( ! $dbo->getData('id')) show_404();
 
 		$data['form_data'] = $dbo->getData();
+
+		$data['form_data']['teacher_id'] = $teacher_id;
 
 		$this->load->view('head', $data);
 		$this->load->view('pages/teacher_load/form');
