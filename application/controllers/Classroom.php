@@ -11,6 +11,7 @@ class Classroom extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('classroom_model', 'classroom');
+		$this->load->model('department_model', 'department');
 	}
 
 	/**

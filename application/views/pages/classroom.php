@@ -5,8 +5,11 @@
 		<table id="classroom_table" class="table table-bordered table-striped">
 			<colgroup>
 				<col />
-				<col width="1" />
-				<col width="1" />
+				<col width="" />
+				<col width="" />
+				<col width="" />
+				<col width="" />
+				<col width="" />
 			</colgroup>
 		</table>
 	</div>
@@ -28,8 +31,34 @@ dtClassroomTable = $('#classroom_table').DataTable({
 	},
 	columns: [
 		{
-			title: "Name",
-			data: 'name'
+			title: "Year Level",
+			data: 'level',
+			render: function(data) {
+				var $txt = "n/a";
+				switch(parseInt(data)) {
+					case 1: $txt = "1st";
+					break;
+					case 2: $txt = "2nd";
+					break;
+					case 3: $txt = "3rd";
+					break;
+					case 4: $txt = "4th";
+					break;
+				}
+				return $txt;
+			}
+		},
+		{
+			title: "Section",
+			data: 'section'
+		},
+		{
+			title: "Dept.",
+			data: 'department'
+		},
+		{
+			title: "Batch.",
+			data: 'batch'
 		},
 		{
 			title: "Date Created",
@@ -37,7 +66,8 @@ dtClassroomTable = $('#classroom_table').DataTable({
 			className: "text-nowrap",
 			render: function(data) {
 				return moment(data).format("MMMM D, YYYY | hh:mma");
-			}
+			},
+			searchable: false
 		},
 		{
 			title: "Actions",

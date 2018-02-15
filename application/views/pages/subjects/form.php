@@ -52,6 +52,8 @@ window.addEventListener('load', function() {
 		}
 	}
 
+	$('select#department').find('option[value=admin]').detach();
+
 	})(jQuery);
 });
 

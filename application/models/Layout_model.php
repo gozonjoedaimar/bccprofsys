@@ -67,4 +67,24 @@ class Layout_model extends Core_model {
 	{
 		return $this->getBackBtn($return_url);
 	}
+
+	/**
+	 *
+	 */
+	public function year_selection()
+	{
+		$start = 1970;
+		$end = date('Y') + 10;
+
+		$batch = [];
+
+		for ($i=$start; $i <= $end; $i++) { 
+			$batch[] = [
+				'code'=>$i,
+				'name'=>$i
+			];
+		}
+
+		return $batch;
+	}
 }
