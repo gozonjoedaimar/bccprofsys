@@ -10,7 +10,7 @@ $listing = $this->notifications->listing(5);
 
             	  	<?php foreach ($listing as $notif) : ?>
 	                  <li>
-	                    <a href="<?php echo "#!"; ?>">
+	                    <a href="<?php echo isset($notif['link']) && $notif['link'] ? $notif['link']: "#!"; ?>">
 	                      <i class="fa <?php echo isset($notif['icon']) ? $notif['icon']:"fa-info-circle" ?> text-<?php echo isset($notif['color']) ? $notif['color']: "grey"; ?>"></i> <?php echo isset($notif['message']) ? $notif['message']: "No message" ?>
 	                    </a>
 	                  </li>

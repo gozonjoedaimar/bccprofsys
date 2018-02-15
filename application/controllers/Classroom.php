@@ -175,6 +175,13 @@ class Classroom extends CI_Controller {
 		}
 		else {
 			$this->layout->addAlert('success', 'Successfully saved classroom.');
+			$this->notifications->save(array(
+				"message"=> $id ? "A classroom has been updated" : "New classroom has been added",
+				"icon"=>"fa-cube",
+				"color"=>"yellow",
+				'link'=>'/classroom',
+				"roles"=>serialize(array("_all"))
+			));
 			redirect('classroom');
 			return;
 		}

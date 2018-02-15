@@ -175,6 +175,13 @@ class Subjects extends CI_Controller {
 		}
 		else {
 			$this->layout->addAlert('success', 'Successfully saved subjects.');
+			$this->notifications->save(array(
+				"message"=> $id ? "A subject has been updated" : "New subject has been added",
+				"icon"=>"fa-book",
+				"color"=>"yellow",
+				'link'=>'/subjects',
+				"roles"=>serialize(array("_all"))
+			));
 			redirect('subjects');
 			return;
 		}
