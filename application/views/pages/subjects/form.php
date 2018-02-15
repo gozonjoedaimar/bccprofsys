@@ -22,7 +22,7 @@
 						<label for="department">Department</label>
 						<?php
 							$selected = isset($form_data['department']) ? $form_data['department']: ""; 
-							$this->layout->get_select('department', 'department', $this->department->listing(), $selected, TRUE);
+							$this->layout->get_select('department', 'department', $this->department->listing('non_mngt'), $selected, TRUE);
 						?>
 					</div>	
 				</div>
@@ -52,7 +52,7 @@ window.addEventListener('load', function() {
 		}
 	}
 
-	$('select#department').find('option[value=admin]').detach();
+	// $('select#department').find('option[value=admin]').detach();
 
 	})(jQuery);
 });
