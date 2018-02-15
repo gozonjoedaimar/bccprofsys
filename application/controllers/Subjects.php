@@ -11,6 +11,7 @@ class Subjects extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('subjects_model', 'subjects');
+		$this->load->model('department_model', 'department');
 	}
 
 	/**

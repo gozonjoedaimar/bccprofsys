@@ -7,6 +7,8 @@
 				<col />
 				<col width="1" />
 				<col width="1" />
+				<col width="1" />
+				<col width="1" />
 			</colgroup>
 		</table>
 	</div>
@@ -30,6 +32,20 @@ dtSubjectsTable = $('#subjects_table').DataTable({
 		{
 			title: "Name",
 			data: 'name'
+		},
+		{
+			title: "Code",
+			data: 'code',
+			render: function(data) {
+				return data.toUpperCase();
+			} 
+		},
+		{
+			title: "Dept.",
+			data: 'department',
+			render: function(data) {
+				return data.toUpperCase();
+			} 
 		},
 		{
 			title: "Date Created",

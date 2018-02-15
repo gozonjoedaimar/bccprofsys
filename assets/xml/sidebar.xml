@@ -173,7 +173,7 @@
 			<link>
 				<name>Subjects</name>
 				<icon>fa-book</icon>
-				<url>#!</url>
+				<url>/subjects</url>
 			</link>
 			<link>
 				<name>Teachers</name>
