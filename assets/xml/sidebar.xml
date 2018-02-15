@@ -32,7 +32,7 @@
 				<icon>fa-users</icon>
 				<sub>
 					<link>
-						<name>List</name>
+						<name>User List</name>
 						<url>/users</url>
 					</link>
 					<link>
