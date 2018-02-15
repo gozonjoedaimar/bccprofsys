@@ -211,7 +211,7 @@ class Teacher_load extends CI_Controller {
 		}
 		else {
 			$this->layout->addAlert('success', 'Successfully saved teacher_load.');
-			redirect('teacher_load');
+			redirect('teacher_load/view/' . $post['teacher_id']);
 			return;
 		}
 
@@ -221,9 +221,9 @@ class Teacher_load extends CI_Controller {
 	 *
 	 *
 	 */
-	public function listing()
+	public function listing($teacher_id = NULL)
 	{
-		$depts = $this->teacher_load->listing();
+		$depts = $this->teacher_load->listing($teacher_id);
 		$this->output->set_content_type('json')->set_output(json_encode(array('data'=>$depts)));
 	}
 }

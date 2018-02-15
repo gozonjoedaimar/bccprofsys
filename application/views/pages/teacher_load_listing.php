@@ -1,4 +1,8 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+$teacher_id = isset($teacher_id) ? $teacher_id: '';
+
+?>
 
 <div class="box">
 	<div class="box-body">
@@ -24,7 +28,7 @@ window.addEventListener('load', function() {
 
 dtTeacher_loadTable = $('#teacher_load_table').DataTable({
 	ajax: {
-		url: "<?php echo site_url('teacher_load/listing', SITE_SCHEME) ?>"
+		url: "<?php echo site_url('teacher_load/listing/' . $teacher_id, SITE_SCHEME) ?>"
 	},
 	columns: [
 		{
@@ -48,7 +52,7 @@ dtTeacher_loadTable = $('#teacher_load_table').DataTable({
 				var btnCnt = $("<div class='btn-group'></div>");
 				var edtBtnEl = $('<button type="button" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></button>');
 				edtBtnEl.attr({
-					onclick: "PageOverlay.show(); location.href='<?php echo site_url('teacher_load/edit') ?>/" + data + "/<?php echo isset($teacher_id) ? $teacher_id: '' ?>';"
+					onclick: "PageOverlay.show(); location.href='<?php echo site_url('teacher_load/edit') ?>/" + data + "/<?php echo $teacher_id ?>';"
 				}).appendTo(btnCnt);
 				var delBtnEl = $('<button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>');
 				delBtnEl.attr({

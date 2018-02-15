@@ -16,12 +16,17 @@ class Teacher_load_model extends CI_Model {
 	 *
 	 *
 	 */
-	public function listing()
+	public function listing($teacher_id = NULL)
 	{
 		// $dbo = new Database_Object('teacher_load');
 		// return $dbo->getAll();
 
 		$this->db->from('teacher_load');
+
+		if ($teacher_id) {
+			$this->db->where('teacher_id', $teacher_id);
+		}
+
 		return $this->db->get()->result_array();
 	}
 }
