@@ -57,7 +57,7 @@ $module = isset($module) ? $module: "";
 						</select> -->
 						<?php
 							$selected = isset($form_data['department']) ? $form_data['department']: ""; 
-							$this->layout->get_select('department', 'department', $this->department->listing(), $selected, TRUE);
+							$this->layout->get_select('department', 'department', $this->department->listing($module ? TRUE: FALSE), $selected, TRUE);
 						?>
 					</div>	
 				</div>
