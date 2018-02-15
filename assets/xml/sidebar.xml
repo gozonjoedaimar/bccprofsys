@@ -166,6 +166,16 @@
 				<url>/users/student</url>
 			</link>
 			<link>
+				<name>Classes</name>
+				<icon>fa-cubes</icon>
+				<url>/classroom</url>
+			</link>
+			<link>
+				<name>Subjects</name>
+				<icon>fa-book</icon>
+				<url>#!</url>
+			</link>
+			<link>
 				<name>Teachers</name>
 				<icon>fa-slideshare</icon>
 				<sub>
