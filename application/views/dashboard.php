@@ -12,13 +12,13 @@
 			<div class="box-footer">
 				<ul class="nav nav-stacked">
 					<li class="text-center">
-						<a href="#"><small>View All</small></a>
+						<a href="/notifications"><small>View All</small></a>
 					</li>
 				</ul>
 			</div>
 		</div>
 	</div>
-	<div class="col-sm-6 col-xs-12">
+	<div class="col-sm-6 col-xs-12 hide">
 		<div class="box dashup-box ">
 			<div class="box-header with-border">
 				<h1 class="box-title">Schedule</h1>
