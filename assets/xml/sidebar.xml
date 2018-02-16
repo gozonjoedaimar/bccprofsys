@@ -94,7 +94,7 @@
 				<icon>fa-users</icon>
 				<sub>
 					<link>
-						<name>List</name>
+						<name>User List</name>
 						<url>/users</url>
 					</link>
 					<link>
@@ -153,7 +153,8 @@
 			<link>
 				<name>Grades</name>
 				<icon>fa-area-chart</icon>
-				<url>/grades/index/dept_coordinator</url>
+				<!-- <url>/grades/index/dept_coordinator</url> -->
+				<url>/classroom/grades</url>
 			</link>
 			<link>
 				<name>Updates</name>
@@ -200,12 +201,12 @@
 				<visible>false</visible>
 			</link>
 			<link>
-				<name>Classroom</name>
+				<name>Classes</name>
 				<icon>fa-cubes</icon>
-				<url>/classroom</url>
-				<sub>
+				<url>/classroom/teacher</url>
+				<sub1>
 					<link>
-						<name>Classroom</name>
+						<name>Classes</name>
 						<!-- <icon>fa-cubes</icon> -->
 						<url>/classroom</url>
 					</link>
@@ -214,20 +215,24 @@
 						<!-- <icon>fa-users</icon> -->
 						<url>/users/student</url>
 					</link>
-				</sub>
+				</sub1>
 			</link>
 			<link>
 				<name>Grades</name>
 				<icon>fa-area-chart</icon>
-				<url>/grades/index/teacher</url>
+				<!-- <url>/grades/index/teacher</url> -->
+				<url>/classroom/grades</url>
 			</link>
 			<link>
 				<name>Subjects</name>
 				<icon>fa-book</icon>
+				<url>/subjects/teacher</url>
 			</link>
 			<link>
 				<name>Schedule</name>
 				<icon>fa-calendar</icon>
+				<url>/teacher_load/teacher_view</url>
+				<!-- <visible>false</visible> -->
 			</link>
 		</menu>
 	</user>

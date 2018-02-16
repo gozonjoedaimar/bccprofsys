@@ -48,6 +48,11 @@ class Teacher_load extends CI_Controller {
 		$this->load->view('footer');
 	}
 
+	public function teacher_view()
+	{
+		$this->view('teacher_view');
+	}
+
 	/**
 	 * Index Page for this controller.
 	 *

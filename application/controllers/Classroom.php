@@ -42,9 +42,24 @@ class Classroom extends CI_Controller {
 				)
 			)
 		);
+
+		if ($module == "grades") {
+			$data['title'] = "Grades";
+		}
+		
 		$this->load->view('head', $data);
 		$this->load->view('pages/classroom');
 		$this->load->view('footer');
+	}
+
+	public function teacher()
+	{
+		$this->index('teacher');
+	}
+
+	public function grades()
+	{
+		$this->index('grades');
 	}
 
 	/**

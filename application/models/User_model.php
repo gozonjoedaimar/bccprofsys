@@ -172,6 +172,7 @@ class User_model extends CI_Model
 			$this->core->set_session('name', $result->first_name . " " . $result->last_name);
 			$this->core->set_session('department', $this->get_dept_name($result->department));
 			$this->core->set_session('dept_code', $result->department);
+			$this->core->set_session('user_id', $id);
 			$this->core->set_session('role', $this->get_role_name($result->role));
 			$this->core->set_session('role_code', $result->role);
 			$this->core->set_session('memspan', date('M. Y', strtotime($result->created_at)));
@@ -180,10 +181,10 @@ class User_model extends CI_Model
 		}
 
 		if ($id == 'root') {
-			$this->core->set_session('name', 'Root');
-			$this->core->set_session('department', 'Root');
+			$this->core->set_session('name', 'Admin');
+			$this->core->set_session('department', 'Admin');
 			$this->core->set_session('dept_code', 'admin');
-			$this->core->set_session('role', 'Root');
+			$this->core->set_session('role', 'Admin');
 			$this->core->set_session('role_code', 'admin');
 			$this->core->set_session('memspan', date('M. Y'));			
 		}
