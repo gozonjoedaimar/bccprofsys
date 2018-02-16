@@ -51,4 +51,25 @@ class Classroom_model extends CI_Model {
 
 		return $level;
 	}
+
+	public function selection() 
+	{
+		$list = $this->listing();
+
+		$selection = [];
+
+		foreach ($list as $class) {
+
+			$year_level =$class['level'];
+			$section =$class['section'];
+			$batch =$class['batch'];
+
+			$selection[] = [
+				'code'=>$class['id'],
+				'name'=>"{$year_level} - {$section} | $batch"
+			];
+		}
+
+		return $selection;
+	}
 }

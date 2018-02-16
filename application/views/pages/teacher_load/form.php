@@ -4,7 +4,7 @@
 	<div class="box">
 		<div class="box-body">
 			<div class="row">
-				<div class="col-xs-12 col-sm-6 -col-sm-offset-3">
+				<div class="col-xs-12 col-sm-6 -col-sm-offset-3 hide">
 					<div class="form-group">
 						<label for="teacher_load_name">Name</label>
 						<input type="hidden" name="id" value="<?php if (isset($form_data['id'])) echo $form_data['id']; ?>">
@@ -35,7 +35,25 @@
 						<label for="week_day">Week day</label>
 						<?php
 							$selected = isset($form_data['day']) ? $form_data['day']: date('Y'); 
-							$this->layout->get_select('day', 'week_day', $this->layout->day_selection(), $selected, TRUE);
+							$this->layout->get_select('day', 'week_day', $this->layout->day_selection('full'), $selected, TRUE);
+						?>
+					</div>	
+				</div>
+				<div class="col-xs-12 col-sm-6 ">
+					<div class="form-group">
+						<label for="subjects">Subject</label>
+						<?php
+							$selected = isset($form_data['subject']) ? $form_data['subject']: date('Y'); 
+							$this->layout->get_select('subject', 'subjects', $this->subjects->selection(), $selected, TRUE);
+						?>
+					</div>	
+				</div>
+				<div class="col-xs-12 col-sm-6 ">
+					<div class="form-group">
+						<label for="classroom">Class</label>
+						<?php
+							$selected = isset($form_data['classroom']) ? $form_data['classroom']: date('Y'); 
+							$this->layout->get_select('classroom', 'classroom', $this->classroom->selection(), $selected, TRUE);
 						?>
 					</div>	
 				</div>

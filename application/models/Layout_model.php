@@ -121,13 +121,16 @@ class Layout_model extends Core_model {
 	/**
 	 *
 	 */
-	public function day_selection() 
+	public function day_selection($full = NULL)
 	{
-		$days = [
+		$init = [
 			[
 				'code'=>'sun',
 				'name'=>"Sunday"
-			],
+			]
+		];
+
+		$days = [
 			[
 				'code'=>'mon',
 				'name'=>"Monday"
@@ -153,6 +156,10 @@ class Layout_model extends Core_model {
 				'name'=>"Saturday"
 			]
 		];
+
+		if ($full) {
+			$days = array_merge($init, $days);
+		}
 
 		return $days;
 	}

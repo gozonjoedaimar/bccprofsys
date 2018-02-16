@@ -11,6 +11,8 @@ class Teacher_load extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('teacher_load_model', 'teacher_load');
+		$this->load->model('subjects_model', 'subjects');
+		$this->load->model('classroom_model', 'classroom');
 	}
 
 	/**
