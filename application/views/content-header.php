@@ -14,4 +14,7 @@
         <!-- <button type="button" class="btn btn-sm">New</button> -->
         <?php if (isset($ch_btns)) $this->layout->btn_sm($ch_btns); ?>
       </div>
+      <?php if (isset($head_notes)) : ?>
+      <small class="text-muted h5"><?php echo $head_notes ?></small>
+      <?php endif; ?>
     </section>

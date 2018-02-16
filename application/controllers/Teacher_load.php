@@ -22,7 +22,8 @@ class Teacher_load extends CI_Controller {
 	public function index($module = NULL)
 	{
 		$data = array(
-			'title'=>'Teacher_load',
+			'title'=>'Teacher load',
+			'head_notes'=>"Select a teacher to start.",
 			'ch_btns'=>array(
 				$this->layout->getPrintBtn(array(
 						array(
@@ -60,8 +61,11 @@ class Teacher_load extends CI_Controller {
 	 */
 	public function view($teacher_id, $module = NULL)
 	{
+		$teacher = $this->user->get_user($teacher_id);
+
 		$data = array(
 			'title'=>'Teacher load',
+			'head_notes'=>"- {$teacher->first_name} {$teacher->last_name}",
 			'ch_btns'=>array(
 				$this->layout->getBackBtn(site_url('teacher_load')),
 				$this->layout->getPrintBtn(array(
@@ -73,7 +77,7 @@ class Teacher_load extends CI_Controller {
 				),
 				array(
 					'name'=>'New <i class="fa fa-ch fa-plus"></i>',
-					'class'=>'btn-success',
+					'class'=>'btn-success add_teacher_load',
 					'attr'=>array(
 						array(
 							'name'=>'onclick',
@@ -87,6 +91,7 @@ class Teacher_load extends CI_Controller {
 
 		if ($module == 'teacher_view') {
 			$data['title'] = "Schedule";
+			$data['teacher_view'] = TRUE;
 		}
 
 		$this->load->view('head', $data);
@@ -100,8 +105,11 @@ class Teacher_load extends CI_Controller {
 	 */
 	public function add($teacher_id)
 	{
+		$teacher = $this->user->get_user($teacher_id);
+
 		$data = array(
-			'title'=>'Add new teacher_load',
+			'title'=>'Add new teacher load',
+			'head_notes'=>"- {$teacher->first_name} {$teacher->last_name}",
 			'ch_btns'=>array(
 				$this->layout->getBackBtn(site_url('teacher_load/view/' . $teacher_id)),
 				array(

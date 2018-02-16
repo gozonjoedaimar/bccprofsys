@@ -32,7 +32,7 @@ class Subjects extends CI_Controller {
 				),
 				array(
 					'name'=>'New <i class="fa fa-ch fa-plus"></i>',
-					'class'=>'btn-success',
+					'class'=>'btn-success add_subject',
 					'attr'=>array(
 						array(
 							'name'=>'onclick',
@@ -42,6 +42,12 @@ class Subjects extends CI_Controller {
 				)
 			)
 		);
+
+		if ($module == 'teacher')
+		{
+			$data['teacher_view'] = TRUE;
+		}
+
 		$this->load->view('head', $data);
 		$this->load->view('pages/subjects');
 		$this->load->view('footer');

@@ -16,7 +16,7 @@
                 <div class="col-sm-4 border-right">
                   <div class="description-block">
                     <h5 class="description-header">Year</h5>
-                    <span class="description-text">1</span>
+                    <span class="description-text">1st</span>
                   </div>
                   <!-- /.description-block -->
                 </div>
@@ -32,7 +32,7 @@
                 <div class="col-sm-4">
                   <div class="description-block">
                     <h5 class="description-header">Unit</h5>
-                    <span class="description-text">200</span>
+                    <span class="description-text">28</span>
                   </div>
                   <!-- /.description-block -->
                 </div>

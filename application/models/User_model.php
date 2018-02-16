@@ -191,4 +191,12 @@ class User_model extends CI_Model
 
 		return $this;
 	}
+
+	public function get_user($id)
+	{
+		$this->db->from('users');
+		$this->db->where('id', $id);
+
+		return $this->db->get()->row();
+	}
 }

@@ -5,7 +5,7 @@
 		<table id="subjects_table" class="table table-bordered table-striped">
 			<colgroup>
 				<col />
-				<col width="1" />
+				<col width="" />
 				<col width="1" />
 				<col width="1" />
 				<col width="1" />
@@ -54,6 +54,9 @@ dtSubjectsTable = $('#subjects_table').DataTable({
 			render: function(data) {
 				return moment(data).format("MMMM D, YYYY | hh:mma");
 			}
+			<?php if (isset($teacher_view) && $teacher_view) : ?>
+			,visible: false
+			<?php endif; ?>
 		},
 		{
 			title: "Actions",
@@ -71,6 +74,9 @@ dtSubjectsTable = $('#subjects_table').DataTable({
 				}).appendTo(btnCnt);
 				return btnCnt.get(0).outerHTML;
 			}
+			<?php if (isset($teacher_view) && $teacher_view) : ?>
+			,visible: false
+			<?php endif; ?>
 		}
 	],
 	columnDefs: [
@@ -91,6 +97,10 @@ dtSubjectsTable = $('#subjects_table').DataTable({
 createDept = function() {
 	location.href = "<?php echo site_url('subjects/add') ?>";
 }
+
+<?php if (isset($teacher_view) && $teacher_view) : ?>
+$('.add_subject').hide();
+<?php endif; ?>
 
 })(jQuery);
 

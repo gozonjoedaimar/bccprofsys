@@ -82,6 +82,9 @@ dtTeacher_loadTable = $('#teacher_load_table').DataTable({
 				}).appendTo(btnCnt);
 				return btnCnt.get(0).outerHTML;
 			}
+			<?php if (isset($teacher_view) && $teacher_view) : ?>
+			,visible: false
+			<?php endif; ?>
 		}
 	],
 	columnDefs: [
@@ -102,6 +105,10 @@ dtTeacher_loadTable = $('#teacher_load_table').DataTable({
 createDept = function() {
 	location.href = "<?php echo site_url('teacher_load/add') ?>";
 }
+
+<?php if (isset($teacher_view) && $teacher_view) : ?>
+$('.add_teacher_load').hide();
+<?php endif; ?>
 
 })(jQuery);
 
