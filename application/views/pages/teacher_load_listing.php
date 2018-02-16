@@ -9,6 +9,12 @@ $teacher_id = isset($teacher_id) ? $teacher_id: '';
 		<table id="teacher_load_table" class="table table-bordered table-striped">
 			<colgroup>
 				<col />
+				<col />
+				<col />
+				<col />
+				<col />
+				<col />
+				<col />
 				<col width="1" />
 				<col width="1" />
 			</colgroup>
@@ -32,8 +38,24 @@ dtTeacher_loadTable = $('#teacher_load_table').DataTable({
 	},
 	columns: [
 		{
-			title: "Name",
-			data: 'name'
+			title: "Subject",
+			data: 'subject_code'
+		},
+		{
+			title: "Day",
+			data: 'day'
+		},
+		{
+			title: "Time Start",
+			data: 'time_start'
+		},
+		{
+			title: "Time End",
+			data: 'time_end'
+		},
+		{
+			title: "Class",
+			data: 'classroom_disp'
 		},
 		{
 			title: "Date Created",

@@ -25,7 +25,7 @@
 					<div class="form-group">
 						<label for="time_end">Time End</label>
 						<?php
-							$selected = isset($form_data['time_end']) ? $form_data['time_end']: date('Y'); 
+							$selected = isset($form_data['time_end']) ? $form_data['time_end']: ""; 
 							$this->layout->get_select('time_end', 'time_end', $this->layout->time_selection(), $selected, TRUE);
 						?>
 					</div>	
@@ -35,7 +35,7 @@
 						<label for="week_day">Week day</label>
 						<?php
 							$selected = isset($form_data['day']) ? $form_data['day']: date('Y'); 
-							$this->layout->get_select('day', 'week_day', $this->layout->day_selection('full'), $selected, TRUE);
+							$this->layout->get_select('day', 'week_day', $this->layout->day_selection(), $selected, TRUE);
 						?>
 					</div>	
 				</div>
