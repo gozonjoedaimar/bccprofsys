@@ -21,7 +21,8 @@
 			<link>
 				<name>Schedule</name>
 				<icon>fa-calendar</icon>
-				<url>/schedule</url>
+				<!-- <url>/schedule</url> -->
+				<url>/teacher_load/student</url>
 			</link>
 		</menu>
 	</user>
@@ -222,7 +223,8 @@
 				<name>Grades</name>
 				<icon>fa-area-chart</icon>
 				<!-- <url>/grades/index/teacher</url> -->
-				<url>/classroom/grades</url>
+				<!-- <url>/classroom/grades</url> -->
+				<url>/teacher_load/grades</url>
 			</link>
 			<link>
 				<name>Subjects</name>

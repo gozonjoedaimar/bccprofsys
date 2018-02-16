@@ -55,6 +55,18 @@ class Teacher_load extends CI_Controller {
 		$this->view($teacher_id, 'teacher_view');
 	}
 
+	public function grades()
+	{
+		$teacher_id = $this->core->get_session('user_id');
+		$this->view($teacher_id, 'grades');
+	}
+
+	public function student()
+	{
+		$student_id = $this->core->get_session('user_id');
+		$this->view($student_id, 'student');
+	}
+
 	/**
 	 * Index Page for this controller.
 	 *
@@ -92,6 +104,18 @@ class Teacher_load extends CI_Controller {
 		if ($module == 'teacher_view') {
 			$data['title'] = "Schedule";
 			$data['teacher_view'] = TRUE;
+		}
+
+		if ($module == 'grades') {
+			$data['title'] = "Subject Selection";
+			$data['teacher_view'] = TRUE;
+			$data['grades'] = TRUE;
+		}
+
+		if ($module == 'student') {
+			$data['title'] = "Schedule";
+			$data['teacher_view'] = TRUE;
+			$data['student'] = TRUE;
 		}
 
 		$this->load->view('head', $data);
@@ -244,9 +268,9 @@ class Teacher_load extends CI_Controller {
 	 *
 	 *
 	 */
-	public function listing($teacher_id = NULL)
+	public function listing($teacher_id = NULL, $module = NULL)
 	{
-		$depts = $this->teacher_load->listing($teacher_id);
+		$depts = $this->teacher_load->listing($teacher_id, $module);
 		$this->output->set_content_type('json')->set_output(json_encode(array('data'=>$depts)));
 	}
 }

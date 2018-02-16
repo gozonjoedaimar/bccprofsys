@@ -16,12 +16,20 @@ class Teacher_load_model extends CI_Model {
 	 *
 	 *
 	 */
-	public function listing($teacher_id = NULL)
+	public function listing($_id = NULL, $module = NULL)
 	{
 		// $dbo = new Database_Object('teacher_load');
 		// return $dbo->getAll();
 
+		$teacher_id  = $_id;
+
 		$sql = "SELECT *, (SELECT code FROM subjects WHERE subjects.id = teacher_load.subject) subject_code FROM `teacher_load` WHERE teacher_id = '{$teacher_id}'";
+
+
+		if ($module == "student")
+		{
+			$sql = "SELECT *, (SELECT code FROM subjects WHERE subjects.id = teacher_load.subject) subject_code FROM `teacher_load` WHERE classroom IN (SELECT classroom FROM `class_list` where student = '{$_id}')";			
+		}
 
 		// $this->db->from('teacher_load');
 
@@ -33,7 +41,12 @@ class Teacher_load_model extends CI_Model {
 
 		foreach ($result as $idx => $info) {
 			$class = $this->get_class_disp($info['classroom']);
+			$teacher = $this->user->get_user($info['teacher_id']);
 			$result[$idx]['classroom_disp'] = $class;
+			$first_name = $teacher->first_name;
+			$last_name = $teacher->last_name;
+			$result[$idx]['teacher_disp'] = "{$first_name} {$last_name}";
+
 		}
 
 		return $result;

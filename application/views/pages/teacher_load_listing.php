@@ -1,6 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 $teacher_id = isset($teacher_id) ? $teacher_id: '';
+$module = isset($student) ? 'student': '';
 
 ?>
 
@@ -31,7 +32,7 @@ window.addEventListener('load', function() {
 
 dtTeacher_loadTable = $('#teacher_load_table').DataTable({
 	ajax: {
-		url: "<?php echo site_url('teacher_load/listing/' . $teacher_id, SITE_SCHEME) ?>"
+		url: "<?php echo site_url('teacher_load/listing/' . $teacher_id. '/' . $module, SITE_SCHEME) ?>"
 	},
 	columns: [
 		{
@@ -56,6 +57,12 @@ dtTeacher_loadTable = $('#teacher_load_table').DataTable({
 		{
 			title: "Class",
 			data: 'classroom_disp'
+		},		{
+			title: "Teacher",
+			data: 'teacher_disp',
+			<?php if ( ! isset($student)): ?>
+			visible: false
+			<?php endif; ?>
 		},
 		{
 			title: "Date Created",
@@ -70,19 +77,36 @@ dtTeacher_loadTable = $('#teacher_load_table').DataTable({
 			title: "Actions",
 			data: 'id',
 			className: "text-nowrap action_col",
-			render: function(data) {
+			render: function(data, type, row) {
 				var btnCnt = $("<div class='btn-group'></div>");
 				var edtBtnEl = $('<button type="button" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></button>');
 				edtBtnEl.attr({
 					onclick: "PageOverlay.show(); location.href='<?php echo site_url('teacher_load/edit') ?>/" + data + "/<?php echo $teacher_id ?>';"
-				}).appendTo(btnCnt);
+				});
 				var delBtnEl = $('<button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>');
 				delBtnEl.attr({
 					onclick: "if (confirm('Delete Teacher_load?')) location.href='<?php echo site_url('teacher_load/delete') ?>/" + data + "';"
-				}).appendTo(btnCnt);
+				});
+
+
+				var classroom = row.classroom;
+				var grdeditBtnEl = $('<button type="button" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></button>');
+				grdeditBtnEl.attr({
+					onclick: "PageOverlay.show(); location.href='<?php echo site_url('classroom/edit') ?>/" + classroom + "/grades/" + data + "';"
+				});
+
+
+				<?php if ( ! (isset($grades) && $grades)) : ?>
+				edtBtnEl.appendTo(btnCnt);
+				delBtnEl.appendTo(btnCnt);
+				<?php else: ?>
+				grdeditBtnEl.appendTo(btnCnt);
+				<?php endif; ?>
+
+
 				return btnCnt.get(0).outerHTML;
 			}
-			<?php if (isset($teacher_view) && $teacher_view) : ?>
+			<?php if (isset($teacher_view) && $teacher_view && ! isset($grades)) : ?>
 			,visible: false
 			<?php endif; ?>
 		}

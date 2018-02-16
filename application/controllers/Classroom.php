@@ -122,7 +122,7 @@ class Classroom extends CI_Controller {
 	 *
 	 *
 	 */
-	public function edit($id, $module = "")
+	public function edit($id, $module = "", $teacher_load = '')
 	{
 		$data = array(
 			'title'=>"Update classroom",
@@ -166,6 +166,7 @@ class Classroom extends CI_Controller {
 
 		if ($module == 'grades') {
 			$data['title'] = "Student Selection";
+			$data['teacher_load'] = $teacher_load;
 		}
 
 		$this->load->view('head', $data);
