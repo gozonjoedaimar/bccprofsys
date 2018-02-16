@@ -50,17 +50,18 @@ class Teacher_load extends CI_Controller {
 
 	public function teacher_view()
 	{
-		$this->view('teacher_view');
+		$teacher_id = $this->core->get_session('user_id');
+		$this->view($teacher_id, 'teacher_view');
 	}
 
 	/**
 	 * Index Page for this controller.
 	 *
 	 */
-	public function view($teacher_id)
+	public function view($teacher_id, $module = NULL)
 	{
 		$data = array(
-			'title'=>'Teacher_load',
+			'title'=>'Teacher load',
 			'ch_btns'=>array(
 				$this->layout->getBackBtn(site_url('teacher_load')),
 				$this->layout->getPrintBtn(array(
@@ -83,6 +84,11 @@ class Teacher_load extends CI_Controller {
 			),
 			'teacher_id'=>$teacher_id
 		);
+
+		if ($module == 'teacher_view') {
+			$data['title'] = "Schedule";
+		}
+
 		$this->load->view('head', $data);
 		$this->load->view('pages/teacher_load_listing');
 		$this->load->view('footer');
