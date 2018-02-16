@@ -1,4 +1,8 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+<?php defined('BASEPATH') OR exit('No direct script access allowed');
+
+$module = isset($module) ? $module: "";
+
+?>
 
 <div class="box">
 	<div class="box-body">
@@ -78,11 +82,25 @@ dtClassroomTable = $('#classroom_table').DataTable({
 				var edtBtnEl = $('<button type="button" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></button>');
 				edtBtnEl.attr({
 					onclick: "PageOverlay.show(); location.href='<?php echo site_url('classroom/edit') ?>/" + data + "';"
-				}).appendTo(btnCnt);
+				});
+
+				var viewBtnEl = $('<button type="button" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i></button>');
+				viewBtnEl.attr({
+					onclick: "PageOverlay.show(); location.href='<?php echo site_url('classroom/edit') ?>/" + data + "/<?php echo $module ?>';"
+				});
+
 				var delBtnEl = $('<button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>');
 				delBtnEl.attr({
 					onclick: "if (confirm('Delete Classroom?')) location.href='<?php echo site_url('classroom/delete') ?>/" + data + "';"
-				}).appendTo(btnCnt);
+				});
+
+				<?php if (! (isset($module) && ($module == 'teacher' || $module == 'grades'))) : ?>
+				edtBtnEl.appendTo(btnCnt);
+				delBtnEl.appendTo(btnCnt);
+				<?php else: ?>
+				viewBtnEl.appendTo(btnCnt);
+				<?php endif; ?>
+				
 				return btnCnt.get(0).outerHTML;
 			}
 		}
@@ -105,6 +123,11 @@ dtClassroomTable = $('#classroom_table').DataTable({
 createDept = function() {
 	location.href = "<?php echo site_url('classroom/add') ?>";
 }
+
+<?php if (isset($module) && ($module == 'teacher' || $module == 'grades')) : ?>
+	$('.new_class').hide();
+	$('.save_update').hide();
+<?php endif; ?>
 
 })(jQuery);
 

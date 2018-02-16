@@ -72,6 +72,12 @@ window.addEventListener('load', function() {
 
 	// $('select#department').find('option[value=admin]').detach();
 
+
+<?php if (isset($module) && ($module == 'teacher' || $module == 'grades')) : ?>
+	$('.save_update').hide();
+	$('[name=level], [name=section], [name=department], [name=batch]').attr('disabled', true);
+<?php endif; ?>
+
 	})(jQuery);
 });
 

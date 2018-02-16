@@ -32,7 +32,7 @@ class Classroom extends CI_Controller {
 				),
 				array(
 					'name'=>'New <i class="fa fa-ch fa-plus"></i>',
-					'class'=>'btn-success',
+					'class'=>'btn-success new_class',
 					'attr'=>array(
 						array(
 							'name'=>'onclick',
@@ -45,6 +45,13 @@ class Classroom extends CI_Controller {
 
 		if ($module == "grades") {
 			$data['title'] = "Grades";
+			$data['head_notes'] = "Select class to view/edit grades";
+			$data['module'] = $module;
+		}
+
+		if ($module == 'teacher')
+		{
+			$data['module'] = $module;
 		}
 		
 		$this->load->view('head', $data);
@@ -115,15 +122,15 @@ class Classroom extends CI_Controller {
 	 *
 	 *
 	 */
-	public function edit($id)
+	public function edit($id, $module = "")
 	{
 		$data = array(
 			'title'=>"Update classroom",
 			'ch_btns'=>array(
-				$this->layout->getBackBtn(site_url('classroom')),
+				$this->layout->getBackBtn(site_url("classroom/{$module}")),
 				array(
 					'name'=>'Delete <i class="fa fa-ch fa-trash"></i>',
-					'class'=>'btn-danger',
+					'class'=>'btn-danger save_update',
 					'attr'=>array(
 						array(
 							'name'=>'onclick',
@@ -133,7 +140,7 @@ class Classroom extends CI_Controller {
 				),
 				array(
 					'name'=>'Save <i class="fa fa-ch fa-save"></i>',
-					'class'=>'btn-success',
+					'class'=>'btn-success save_update',
 					'attr'=>array(
 						array(
 							'name'=>'onclick',
@@ -151,6 +158,15 @@ class Classroom extends CI_Controller {
 		if ( ! $dbo->getData('id')) show_404();
 
 		$data['form_data'] = $dbo->getData();
+		$data['module'] = $module;
+
+		if ($module == 'teacher') {
+			$data['title'] = "Classroom Student List";
+		}
+
+		if ($module == 'grades') {
+			$data['title'] = "Student Selection";
+		}
 
 		$this->load->view('head', $data);
 		$this->load->view('pages/classroom/form');

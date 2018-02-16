@@ -95,11 +95,14 @@ dtUsersTable<?php if (isset($table_id)) echo "_{$table_id}" ?> = $('#<?php echo 
 					// onclick: "if (confirm('Delete user?')) location.href='<?php echo site_url('users/delete') ?>/" + data + "/<?php echo $module ?>';"
 					onclick: "if (window.delToClassroom) if (confirm('Remove from classroom?')) delToClassroom(" + data + ")"
 				});
-				<?php if ($module == 'classroom') : ?>
+				<?php if ($module == 'classroom' && ! (isset($view) && ($view == 'teacher' || $view == 'grades'))) : ?>
 				delBtnEl.appendTo(btnCnt);
 				<?php endif; ?>
 				return btnCnt.get(0).outerHTML;
 			}
+			<?php if (isset($view) && $view == 'teacher'): ?>
+			,visible: false
+			<?php endif; ?>
 		}
 	],
 	columnDefs: [
