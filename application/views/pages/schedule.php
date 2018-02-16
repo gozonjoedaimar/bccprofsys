@@ -5,6 +5,10 @@
 		<table id="schedule_table" class="table table-bordered table-striped">
 			<colgroup>
 				<col />
+				<col />
+				<col />
+				<col />
+				<col />
 				<col width="1" />
 				<col width="1" />
 			</colgroup>
@@ -28,8 +32,24 @@ dtScheduleTable = $('#schedule_table').DataTable({
 	},
 	columns: [
 		{
-			title: "Name",
-			data: 'name'
+			title: "Subject",
+			data: 'dbg'
+		},
+		{
+			title: "Week day",
+			data: 'dbg'
+		},
+		{
+			title: "Start",
+			data: 'dbg'
+		},
+		{
+			title: "End",
+			data: 'dbg'
+		},
+		{
+			title: "Teacher",
+			data: 'dbg'
 		},
 		{
 			title: "Date Created",

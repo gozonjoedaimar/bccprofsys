@@ -60,7 +60,7 @@
             <div class="icon">
               <i class="ion ion-stats-bars"></i>
             </div>
-            <a href="#" class="small-box-footer">View <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="grades/index/student" class="small-box-footer">View <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -76,7 +76,7 @@
               <i class="ion ion-stats-bars hide"></i>
               <i class="ion ion-calendar"></i>
             </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="/schedule" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->

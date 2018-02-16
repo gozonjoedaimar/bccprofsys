@@ -5,6 +5,9 @@
 		<table id="grades_table" class="table table-bordered table-striped">
 			<colgroup>
 				<col />
+				<col />
+				<col />
+				<col />
 				<col width="1" />
 				<col width="1" />
 			</colgroup>
@@ -28,8 +31,32 @@ dtGradesTable = $('#grades_table').DataTable({
 	},
 	columns: [
 		{
-			title: "Name",
-			data: 'name'
+			title: "Subject Code",
+			data: 'dbg'
+		},
+		{
+			title: "Subject Title",
+			data: 'dbg'
+		},
+		{
+			title: "1st Semister",
+			data: 'dbg'
+		},
+		{
+			title: "2nd Semister",
+			data: 'dbg'
+		},
+		{
+			title: "Final Grades",
+			data: 'dbg'
+		},
+		{
+			title: "Teacher",
+			data: 'dbg'
+		},
+		{
+			title: "Remarks",
+			data: 'dbg'
 		},
 		{
 			title: "Date Created",
@@ -42,6 +69,7 @@ dtGradesTable = $('#grades_table').DataTable({
 		{
 			title: "Actions",
 			data: 'id',
+			visible: false,
 			className: "text-nowrap action_col",
 			render: function(data) {
 				var btnCnt = $("<div class='btn-group'></div>");

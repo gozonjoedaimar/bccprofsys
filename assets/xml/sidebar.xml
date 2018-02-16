@@ -21,6 +21,7 @@
 			<link>
 				<name>Schedule</name>
 				<icon>fa-calendar</icon>
+				<url>/schedule</url>
 			</link>
 		</menu>
 	</user>
