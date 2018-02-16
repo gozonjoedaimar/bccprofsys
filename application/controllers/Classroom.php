@@ -142,7 +142,8 @@ class Classroom extends CI_Controller {
 					)
 				)
 			),
-			'form_action'=>site_url('classroom/save')
+			'form_action'=>site_url('classroom/save'),
+			'classroom'=>$id
 		);
 
 		$dbo = new Database_Object('classroom', $id);
@@ -153,6 +154,7 @@ class Classroom extends CI_Controller {
 
 		$this->load->view('head', $data);
 		$this->load->view('pages/classroom/form');
+		$this->load->view('pages/classroom/manager');
 		$this->load->view('footer');
 	}
 
