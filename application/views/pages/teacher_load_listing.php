@@ -13,9 +13,6 @@ $teacher_id = isset($teacher_id) ? $teacher_id: '';
 				<col />
 				<col />
 				<col />
-				<col />
-				<col />
-				<col width="1" />
 				<col width="1" />
 			</colgroup>
 		</table>
@@ -43,7 +40,10 @@ dtTeacher_loadTable = $('#teacher_load_table').DataTable({
 		},
 		{
 			title: "Day",
-			data: 'day'
+			data: 'day',
+			render: function(data) {
+				return data.toUpperCase();
+			}
 		},
 		{
 			title: "Time Start",
