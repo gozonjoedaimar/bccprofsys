@@ -226,7 +226,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	<?php endif; ?>
 
 	<?php
-	$dept_code = $this->core->get_session('role_code');
+	$dept_code = $this->core->get_session('dept_code');
 	if ( ! (
 		$dept_code == 'admin' ||
 		$dept_code == 'registrar'
@@ -250,6 +250,8 @@ document.addEventListener('DOMContentLoaded', function() {
 			}
 		}
 	}
+
+	console.log('<?php echo $dept_code ?>');
 
 	<?php endif; ?>
 
