@@ -28,8 +28,23 @@ dtNotificationsTable = $('#notifications_table').DataTable({
 	},
 	columns: [
 		{
+			title: "ID",
+			visible: false,
+			data: 'id'
+		},
+		{
 			title: "Message",
-			data: 'message'
+			data: 'message', 
+			render: function(data, method, row) {
+				var $msg = data;
+
+				if (row.unread == 1) {
+					$msg = "<span style='font-weight: 600'>" + $msg + "</span>";
+				}
+
+				return $msg;
+
+			}
 		},
 		{
 			title: "Date Created",
@@ -45,14 +60,15 @@ dtNotificationsTable = $('#notifications_table').DataTable({
 			className: "text-nowrap action_col",
 			render: function(data) {
 				var btnCnt = $("<div class='btn-group'></div>");
-				var edtBtnEl = $('<button type="button" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></button>');
+				var edtBtnEl = $('<button type="button" class="btn btn-primary btn-sm"><i class="fa fa-external-link"></i></button>');
 				edtBtnEl.attr({
-					onclick: "PageOverlay.show(); location.href='<?php echo site_url('notifications/edit') ?>/" + data + "';"
+					onclick: "PageOverlay.show(); location.href='<?php echo site_url('notifications/view') ?>/" + data + "';"
 				}).appendTo(btnCnt);
 				var delBtnEl = $('<button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>');
 				delBtnEl.attr({
 					onclick: "if (confirm('Delete Notifications?')) location.href='<?php echo site_url('notifications/delete') ?>/" + data + "';"
-				}).appendTo(btnCnt);
+				});
+				// delBtnEl.appendTo(btnCnt);
 				return btnCnt.get(0).outerHTML;
 			}
 		}
@@ -62,6 +78,9 @@ dtNotificationsTable = $('#notifications_table').DataTable({
 			targets: ["_all"],
 			defaultContent: ""
 		}
+	],
+	order: [
+		[0, 'desc']
 	],
 	autoWidth: false,
 	responsive: {

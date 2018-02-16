@@ -97,6 +97,31 @@ class Notifications extends CI_Controller {
 
 	/**
 	 *
+	 */
+	public function view($id = NULL)
+	{
+		$this->db->from('notifications');
+		$this->db->where('id', $id);
+		$this->db->set('unread', 0);
+		$this->db->update();
+
+		$url = "/";
+
+		if ($this->input->get('url')) {
+			$url = $this->input->get('url');
+		}
+		else {
+			$this->db->from('notifications');
+			$this->db->where('id', $id);
+			$notif = $this->db->get()->row();
+			$url = $notif->link;
+		}
+
+		redirect($url);
+	}
+
+	/**
+	 *
 	 *
 	 */
 	public function edit($id)
