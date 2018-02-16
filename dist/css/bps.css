@@ -189,10 +189,10 @@ input.error, select.error, textarea.error {
 #loader-wrapper .title  {
     position: absolute;
     z-index: 1003;
-    width: 350px;
+    max-width: 500px;
     text-align: center;
     left: 50%;
-    margin-left: -175px;
+    margin-left: -250px;
     top: 50%;
     margin-top: 90px;
 }

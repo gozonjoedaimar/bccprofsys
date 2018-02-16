@@ -53,7 +53,7 @@
   <div id="loader-wrapper">
     <div id="loader"></div>
     <img src="/dist/img/bcc-logo.png" class="logo">
-    <h1 class="title">Bacolod City College Profiling System</h1>
+    <h1 class="title">Bacolod City College Student Profiling, Teachers's Loading And Onine Grade Viewing System</h1>
     <div class="loader-section section-left"></div>
     <div class="loader-section section-right"></div>
   </div>
@@ -65,10 +65,10 @@
     <!-- Logo -->
     <a href="" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>BPS</b></span>
+      <span class="logo-mini"><img src="/dist/img/bcc-logo.png" style="height: 35px; margin-right: 5px; "></span>
       <!-- logo for regular state and mobile devices -->
       <!-- <span class="logo-lg"><b>Admin</b>LTE</span> -->
-      <span class="logo-lg"><b>BCC ProfSys</b></span>
+      <span class="logo-lg"><img src="/dist/img/bcc-logo.png" style="height: 35px; margin-right: 5px; "><b>BCC ProfSys</b></span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">

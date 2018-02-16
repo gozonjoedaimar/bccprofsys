@@ -32,31 +32,31 @@ dtGradesTable = $('#grades_table').DataTable({
 	columns: [
 		{
 			title: "Subject Code",
-			data: 'dbg'
+			data: 'subject_code'
 		},
 		{
 			title: "Subject Title",
-			data: 'dbg'
+			data: 'subject_title'
 		},
 		{
 			title: "1st Semister",
-			data: 'dbg'
+			data: 'first_semister'
 		},
 		{
 			title: "2nd Semister",
-			data: 'dbg'
+			data: 'second_semister'
 		},
 		{
 			title: "Final Grades",
-			data: 'dbg'
+			data: 'final_grades'
 		},
 		{
 			title: "Teacher",
-			data: 'dbg'
+			data: 'teacher'
 		},
 		{
 			title: "Remarks",
-			data: 'dbg'
+			data: 'remarks'
 		},
 		{
 			title: "Date Created",
