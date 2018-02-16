@@ -109,4 +109,25 @@ class Core_model extends CI_Model
 
 		return $this;
 	}
+
+	public function get_teacher_load($id)
+	{
+		$this->db->from('teacher_load');
+		$this->db->where('id', $id);
+		return $this->db->get()->row();
+	}
+
+	public function get_classroom($id)
+	{
+		$this->db->from('classroom');
+		$this->db->where('id', $id);
+		return $this->db->get()->row();
+	}
+
+	public function get_subject($id)
+	{
+		$this->db->from('subjects');
+		$this->db->where('id', $id);
+		return $this->db->get()->row();
+	}
 }

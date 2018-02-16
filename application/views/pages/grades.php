@@ -40,15 +40,15 @@ dtGradesTable = $('#grades_table').DataTable({
 		},
 		{
 			title: "1st Semister",
-			data: 'first_semister'
+			data: 'first_sem'
 		},
 		{
 			title: "2nd Semister",
-			data: 'second_semister'
+			data: 'second_sem'
 		},
 		{
 			title: "Final Grades",
-			data: 'final_grades'
+			data: 'final_grade'
 		},
 		{
 			title: "Teacher",
@@ -56,7 +56,7 @@ dtGradesTable = $('#grades_table').DataTable({
 		},
 		{
 			title: "Remarks",
-			data: 'remarks'
+			data: 'remark'
 		},
 		{
 			title: "Date Created",
@@ -103,6 +103,9 @@ dtGradesTable = $('#grades_table').DataTable({
 createDept = function() {
 	location.href = "<?php echo site_url('grades/add') ?>";
 }
+
+$('.content-header-buttons').hide();
+
 
 })(jQuery);
 

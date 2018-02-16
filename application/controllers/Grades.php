@@ -50,12 +50,12 @@ class Grades extends CI_Controller {
 	 *
 	 *
 	 */
-	public function add()
+	public function add($student, $teacher_load)
 	{
 		$data = array(
 			'title'=>'Add new grades',
 			'ch_btns'=>array(
-				$this->layout->getBackBtn(site_url('grades')),
+				$this->layout->getBackBtn(site_url('teacher_load/grades')),
 				array(
 					'name'=>"Save <i class='fa fa-ch fa-save'></i>",
 					'class'=>'btn-success',
@@ -67,8 +67,24 @@ class Grades extends CI_Controller {
 					)
 				)
 			),
-			'form_action'=>site_url('grades/save')
+			'form_action'=>site_url('grades/save'),
+			'student_id'=>$student,
+			'teacher_load'=>$teacher_load,
 		);
+
+		$teacher_load_info = $this->core->get_teacher_load($teacher_load);
+
+		$subject_info = $this->core->get_subject($teacher_load_info->subject);
+
+		$student_info = $this->user->get_user($student);
+
+		$first_name = $student_info->first_name;
+		$last_name = $student_info->last_name;
+
+		$data['subject_name'] =  $subject_info ? $subject_info->code: "";
+		$data['student_name'] = "{$first_name} {$last_name}";
+		$data['class'] = "";
+
 		$this->load->view('head', $data);
 		$this->load->view('pages/grades/form');
 		$this->load->view('footer');
@@ -174,7 +190,7 @@ class Grades extends CI_Controller {
 		}
 		else {
 			$this->layout->addAlert('success', 'Successfully saved grades.');
-			redirect('grades');
+			redirect('teacher_load/grades');
 			return;
 		}
 

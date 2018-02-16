@@ -98,6 +98,19 @@ dtUsersTable<?php if (isset($table_id)) echo "_{$table_id}" ?> = $('#<?php echo 
 				<?php if ($module == 'classroom' && ! (isset($view) && ($view == 'teacher' || $view == 'grades'))) : ?>
 				delBtnEl.appendTo(btnCnt);
 				<?php endif; ?>
+
+
+				var grdBtnEl = $('<button type="button" class="btn btn-primary btn-sm"><i class="fa fa-bar-chart"></i></button>');
+				grdBtnEl.attr({
+					onclick: "edtBtnEv(this, '<?php echo site_url("grades/add") ?>/" + data + "/<?php echo $teacher_load ?>');"
+					// onclick: "if (window.addToClassroom) addToClassroom(" + data + ");"
+				});
+
+				<?php if (isset($view) && $view == 'grades') : ?>
+				grdBtnEl.appendTo(btnCnt);
+				<?php endif; ?>
+
+
 				return btnCnt.get(0).outerHTML;
 			}
 			<?php if (isset($view) && $view == 'teacher'): ?>

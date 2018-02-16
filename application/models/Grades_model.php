@@ -21,10 +21,22 @@ class Grades_model extends CI_Model {
 		// $dbo = new Database_Object('grades');
 		// return $dbo->getAll();
 
-		// $this->db->from('grades');
-		// return $this->db->get()->result_array();
+		$this->db->from('grades');
+		$this->db->where('student', $this->core->get_session('user_id'));
+		$result = $this->db->get()->result_array();
 
-		return $this->demo();
+		$grades = [];
+		foreach ($result as $grade_info) {
+			$teacher_load = $this->core->get_teacher_load($grade_info['teacher_load']);
+			$subject_info = $this->core->get_subject($teacher_load->subject);
+			$grade_info['subject_code'] = $subject_info ? $subject_info->code: "";
+			$grade_info['subject_title'] = $subject_info ? $subject_info->name: "";
+			$grades[] = $grade_info;
+		}
+
+		return $grades;
+
+		// return $this->demo();
 	}
 
 	public function demo()
