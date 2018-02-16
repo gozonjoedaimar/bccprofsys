@@ -4,11 +4,11 @@
 	<div class="box">
 		<div class="box-body">
 			<div class="row">
+				<input type="hidden" name="teacher_id" value="<?php if (isset($form_data['teacher_id'])) echo $form_data['teacher_id']; ?>">
 				<div class="col-xs-12 col-sm-6 -col-sm-offset-3 hide">
 					<div class="form-group">
 						<label for="teacher_load_name">Name</label>
 						<input type="hidden" name="id" value="<?php if (isset($form_data['id'])) echo $form_data['id']; ?>">
-						<input type="hidden" name="teacher_id" value="<?php if (isset($form_data['teacher_id'])) echo $form_data['teacher_id']; ?>">
 						<input type="text" name="name" id="teacher_load_name" class="form-control" value="<?php if (isset($form_data['name'])) echo $form_data['name']; ?>">
 					</div>		
 				</div>

@@ -104,8 +104,10 @@ class Teacher_load extends CI_Controller {
 					)
 				)
 			),
-			'form_action'=>site_url('teacher_load/save')
+			'form_action'=>site_url('teacher_load/save'),
+			'form_data'=>['teacher_id'=>$teacher_id]
 		);
+
 		$this->load->view('head', $data);
 		$this->load->view('pages/teacher_load/form');
 		$this->load->view('footer');
