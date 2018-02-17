@@ -1,4 +1,7 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+<?php defined('BASEPATH') OR exit('No direct script access allowed');
+$student_id = isset($student_id) ? $student_id: "";
+
+?>
 
 <div class="box">
 	<div class="box-body">
@@ -27,7 +30,7 @@ window.addEventListener('load', function() {
 
 dtGradesTable = $('#grades_table').DataTable({
 	ajax: {
-		url: "<?php echo site_url('grades/listing', SITE_SCHEME) ?>"
+		url: "<?php echo site_url("grades/listing/{$student_id}", SITE_SCHEME) ?>"
 	},
 	columns: [
 		{
@@ -104,8 +107,9 @@ createDept = function() {
 	location.href = "<?php echo site_url('grades/add') ?>";
 }
 
+<?php if ($this->core->get_session('role_code') == "student") : ?>
 $('.content-header-buttons').hide();
-
+<?php endif; ?>
 
 })(jQuery);
 

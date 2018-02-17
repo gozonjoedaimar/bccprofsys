@@ -16,13 +16,15 @@ class Grades_model extends CI_Model {
 	 *
 	 *
 	 */
-	public function listing()
+	public function listing($student_id = NULL)
 	{
 		// $dbo = new Database_Object('grades');
 		// return $dbo->getAll();
 
+		if ( ! $student_id) $student_id = $this->core->get_session('user_id');
+
 		$this->db->from('grades');
-		$this->db->where('student', $this->core->get_session('user_id'));
+		$this->db->where('student', $student_id);
 		$result = $this->db->get()->result_array();
 
 		$grades = [];
@@ -72,5 +74,13 @@ class Grades_model extends CI_Model {
 		];
 
 		return $list;
+	}
+
+	public function get_grades($student, $teacher_load)
+	{
+		$this->db->from('grades');
+		$this->db->where('student', $student);
+		$this->db->where('teacher_load', $teacher_load);
+		return $this->db->get()->row_array();
 	}
 }

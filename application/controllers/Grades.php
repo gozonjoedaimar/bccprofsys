@@ -17,7 +17,7 @@ class Grades extends CI_Controller {
 	 * Index Page for this controller.
 	 *
 	 */
-	public function index($module = NULL)
+	public function index($module = NULL, $user_id = NULL)
 	{
 		$data = array(
 			'title'=>'Grades',
@@ -28,7 +28,7 @@ class Grades extends CI_Controller {
 							'value'=>'print()'
 						)
 					)
-				),
+				)/*,
 				array(
 					'name'=>'New <i class="fa fa-ch fa-plus"></i>',
 					'class'=>'btn-success',
@@ -38,9 +38,20 @@ class Grades extends CI_Controller {
 							'value'=>'location.href=\'' . site_url('grades/add') . '\';'
 						)
 					)
-				)
-			)
+				)*/
+			),
+			'student_id'=>$user_id
 		);
+
+		if ($user_id)
+		{
+			$student = $this->user->get_user($user_id);
+			$first_name = $student->first_name;
+			$last_name = $student->last_name;
+
+			$data['head_notes'] = "Grades of <b style='text-decoration: underline;'>{$first_name} {$last_name}</b>";
+		}
+
 		$this->load->view('head', $data);
 		$this->load->view('pages/grades');
 		$this->load->view('footer');
@@ -50,8 +61,20 @@ class Grades extends CI_Controller {
 	 *
 	 *
 	 */
-	public function add($student, $teacher_load)
+	public function add($student, $teacher_load = NULL)
 	{
+		$grade_info = $this->grades->get_grades($student, $teacher_load);
+
+		if ($grade_info) {
+			redirect("grades/edit/{$student}/{$teacher_load}");
+			return;
+		}
+
+		if ( ! $teacher_load) {
+			redirect("grades/index/student/{$student}");
+			return;
+		}
+
 		$data = array(
 			'title'=>'Add new grades',
 			'ch_btns'=>array(
@@ -115,12 +138,16 @@ class Grades extends CI_Controller {
 	 *
 	 *
 	 */
-	public function edit($id)
+	public function edit($student, $teacher_load)
 	{
+
+		$grade_info = $this->grades->get_grades($student, $teacher_load);
+
 		$data = array(
 			'title'=>"Update grades",
 			'ch_btns'=>array(
-				$this->layout->getBackBtn(site_url('grades')),
+				// $this->layout->getBackBtn(site_url('grades')),
+				$this->layout->getBackBtn(site_url('teacher_load/grades')),
 				array(
 					'name'=>'Delete <i class="fa fa-ch fa-trash"></i>',
 					'class'=>'btn-danger',
@@ -142,14 +169,31 @@ class Grades extends CI_Controller {
 					)
 				)
 			),
-			'form_action'=>site_url('grades/save')
+			'form_action'=>site_url('grades/save'),
+			'student_id'=>$student,
+			'teacher_load'=>$teacher_load
 		);
 
-		$dbo = new Database_Object('grades', $id);
+		// $dbo = new Database_Object('grades', $id);
 
-		if ( ! $dbo->getData('id')) show_404();
+		// if ( ! $dbo->getData('id')) show_404();
 
-		$data['form_data'] = $dbo->getData();
+		// $data['form_data'] = $dbo->getData();
+		
+		$data['form_data'] = $grade_info;
+
+		$teacher_load_info = $this->core->get_teacher_load($teacher_load);
+
+		$subject_info = $this->core->get_subject($teacher_load_info->subject);
+
+		$student_info = $this->user->get_user($student);
+
+		$first_name = $student_info->first_name;
+		$last_name = $student_info->last_name;
+
+		$data['subject_name'] =  $subject_info ? $subject_info->code: "";
+		$data['student_name'] = "{$first_name} {$last_name}";
+		$data['class'] = "";
 
 		$this->load->view('head', $data);
 		$this->load->view('pages/grades/form');
@@ -200,9 +244,9 @@ class Grades extends CI_Controller {
 	 *
 	 *
 	 */
-	public function listing()
+	public function listing($student = NULL)
 	{
-		$depts = $this->grades->listing();
+		$depts = $this->grades->listing($student);
 		$this->output->set_content_type('json')->set_output(json_encode(array('data'=>$depts)));
 	}
 }
