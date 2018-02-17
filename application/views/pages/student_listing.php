@@ -1,7 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-$module = isset($module) ? $module: NULL;
+$module = isset($module) ? $module: "";
+$teacher_load = isset($teacher_load) ? $teacher_load: "";
 ?>
 
 <div class="box">
