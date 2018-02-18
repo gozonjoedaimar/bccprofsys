@@ -17,6 +17,12 @@
 						<input type="text" name="code" id="subjects_code" class="form-control" value="<?php if (isset($form_data['code'])) echo $form_data['code']; ?>">
 					</div>
 				</div>
+				<div class="col-xs-12 col-sm-6 -col-sm-offset-3">
+					<div class="form-group">
+						<label for="subject_unit">Unit</label>
+						<input type="text" name="units" id="subject_unit" class="form-control" value="<?php if (isset($form_data['units'])) echo $form_data['units']; ?>">
+					</div>
+				</div>
 				<div class="col-xs-12 col-sm-6 ">
 					<div class="form-group">
 						<label for="department">Department</label>

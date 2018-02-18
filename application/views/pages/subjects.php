@@ -48,6 +48,10 @@ dtSubjectsTable = $('#subjects_table').DataTable({
 			} 
 		},
 		{
+			title: "Units",
+			data: 'units'
+		},
+		{
 			title: "Date Created",
 			data: 'created_at',
 			className: "text-nowrap",

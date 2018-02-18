@@ -2,6 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 $module = isset($module) ? $module: NULL;
+$teacher_load = isset($teacher_load) ? $teacher_load: NULL;
 ?>
 
 <div class="box">
@@ -84,13 +85,33 @@ dtUsersTable = $('#users_table').DataTable({
 				var edtBtnEl = $('<button type="button" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></button>');
 				edtBtnEl.attr({
 					onclick: "edtBtnEv(this, '<?php echo site_url("users/edit") ?>/" + data + "/<?php echo $module ?>');"
-				}).appendTo(btnCnt);
+				});
 				var delBtnEl = $('<button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>');
 				delBtnEl.attr({
 					onclick: "if (confirm('Delete user?')) location.href='<?php echo site_url('users/delete') ?>/" + data + "/<?php echo $module ?>';"
-				}).appendTo(btnCnt);
+				});
+
+				<?php if ($this->core->get_session('role_code') == "registrar" && $module == "student") : ?>
+				
+				var grdBtnEl = $('<button type="button" class="btn btn-primary btn-sm"><i class="fa fa-bar-chart"></i></button>');
+				grdBtnEl.attr({
+					onclick: "edtBtnEv(this, '<?php echo site_url("grades/add") ?>/" + data + "/<?php echo $teacher_load ?>');"
+					// onclick: "if (window.addToClassroom) addToClassroom(" + data + ");"
+				});
+
+				grdBtnEl.appendTo(btnCnt);
+
+				<?php else: ?>
+				edtBtnEl.appendTo(btnCnt);
+				delBtnEl.appendTo(btnCnt);
+				<?php endif; ?>
 				return btnCnt.get(0).outerHTML;
 			}
+
+			<?php if ( $this->core->get_session('role_code') == 'registrar' && $module != 'student') : ?>
+			, visible: false
+			<?php endif; ?>
+
 		}
 	],
 	columnDefs: [
@@ -107,6 +128,13 @@ dtUsersTable = $('#users_table').DataTable({
 		}
 	}
 });
+
+<?php if ($this->core->get_session('role_code') == "registrar") : ?>
+$('.btn-success').hide();
+<?php endif; ?>
+
+
+console.log("<?php echo $this->core->get_session('role_code') ?>");
 
 })(jQuery);
 

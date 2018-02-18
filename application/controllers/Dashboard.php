@@ -27,7 +27,7 @@ class Dashboard extends CI_Controller {
 
 		if ($this->core->get_session('role_code') == 'registrar')
 		{
-			redirect('registrar'); exit;
+			// redirect('registrar'); exit;
 		}
 		elseif ($this->core->get_session('role_code') == 'student')
 		{
