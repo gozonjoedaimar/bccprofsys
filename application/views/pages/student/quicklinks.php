@@ -76,7 +76,7 @@
               <i class="ion ion-stats-bars hide"></i>
               <i class="ion ion-calendar"></i>
             </div>
-            <a href="/schedule" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="/teacher_load/student" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->

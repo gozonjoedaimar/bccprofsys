@@ -43,9 +43,12 @@ class Teacher_load_model extends CI_Model {
 			$class = $this->get_class_disp($info['classroom']);
 			$teacher = $this->user->get_user($info['teacher_id']);
 			$result[$idx]['classroom_disp'] = $class;
-			$first_name = $teacher->first_name;
-			$last_name = $teacher->last_name;
-			$result[$idx]['teacher_disp'] = "{$first_name} {$last_name}";
+
+			if($teacher) {
+				$first_name = $teacher->first_name;
+				$last_name = $teacher->last_name;
+				$result[$idx]['teacher_disp'] = "{$first_name} {$last_name}";
+			}
 
 		}
 
