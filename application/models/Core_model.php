@@ -124,6 +124,21 @@ class Core_model extends CI_Model
 		return $this->db->get()->row();
 	}
 
+	public function get_classroom_name($id) 
+	{
+		$classroom = $this->get_classroom($id);
+
+		if ($classroom) {
+			$level = $classroom->level;
+			$section = $classroom->section;
+			$batch = $classroom->batch;
+
+			return "{$level} - {$section} | {$batch}";
+		}
+
+		return "";
+	}
+
 	public function get_subject($id)
 	{
 		$this->db->from('subjects');

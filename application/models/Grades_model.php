@@ -16,7 +16,7 @@ class Grades_model extends CI_Model {
 	 *
 	 *
 	 */
-	public function listing($student_id = NULL)
+	public function listing($student_id = NULL, $semister = "")
 	{
 		// $dbo = new Database_Object('grades');
 		// return $dbo->getAll();
@@ -25,6 +25,9 @@ class Grades_model extends CI_Model {
 
 		$this->db->from('grades');
 		$this->db->where('student', $student_id);
+		if ($semister) {
+			$this->db->where('semister', $semister);
+		}
 		$result = $this->db->get()->result_array();
 
 		$grades = [];
@@ -39,6 +42,17 @@ class Grades_model extends CI_Model {
 		return $grades;
 
 		// return $this->demo();
+	}
+
+	public function pull_grade($student_id, $teacher_load, $semister)
+	{
+		$this->db->from('grades');
+		$this->db->where('student', $student_id);
+		$this->db->where('teacher_load', $teacher_load);
+		$this->db->where('semister', $semister);
+		$result = $this->db->get()->row_array();
+
+		return $result;
 	}
 
 	public function demo()

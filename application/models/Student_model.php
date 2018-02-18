@@ -86,7 +86,7 @@ class Student_model extends CI_Model
 	 *
 	 *
 	 */
-	public function listing($module = NULL, $id = NULL)
+	public function listing($module = NULL, $id = NULL, $teacher_load = NULL, $semister = NULL)
 	{
 		// $dbo = new Database_Object('users'); // Defined in application/third_party
 		// $user_data = $dbo->getAll();
@@ -121,10 +121,18 @@ class Student_model extends CI_Model
 
 		$list = $this->db->get()->result_array();
 
+
 		if ($module == 'classroom')
 		{
+			$semister_sql = $semister ? "
+				,(SELECT mid_term FROM grades where student = users.id and teacher_load = {$teacher_load} and semister = '{$semister}' LIMIT 1) mid_term,
+				(SELECT final_term FROM grades where student = users.id and teacher_load = {$teacher_load} and semister = '{$semister}' LIMIT 1) final_term,
+				(SELECT final_grade FROM grades where student = users.id and teacher_load = {$teacher_load} and semister = '{$semister}' LIMIT 1) final_grade,
+				(SELECT remark FROM grades where student = users.id and teacher_load = {$teacher_load} and semister = '{$semister}' LIMIT 1) remark
+			": "";
 			$sql = "
 			SELECT *
+				{$semister_sql}
 				FROM `users`
 				WHERE `id` IN (
 					SELECT `student`

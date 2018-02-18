@@ -19,20 +19,36 @@ $teacher_load = isset($teacher_load) ? $teacher_load: "";
 
 <script type="text/javascript">
 
-var dtUsersTable<?php if (isset($table_id)) echo "_{$table_id}" ?> = null, edtBtnEv = null;
+var dtUsersTable<?php if (isset($table_id)) echo "_{$table_id}" ?> = null, edtBtnEv = null, ajaxTableUrl = null;
 
 window.addEventListener('load', function() {
 
 (function($) {
 
 edtBtnEv = function($el, $url) {
+	var semSelect = $('select#semister');
+	if (semSelect.get(0)) {
+		$url += "/" + semSelect.val();
+	}
+
 	PageOverlay.show();
 	location.href = $url;
 }
 
+<?php if ($teacher_load) : ?>
+ajaxTableUrl = "<?php echo site_url("student/listing/{$module}/{$classroom}/{$teacher_load}/first_sem", SITE_SCHEME) ?>";
+<?php else: ?>		
+ajaxTableUrl = "<?php echo site_url("student/listing/{$module}/{$classroom}", SITE_SCHEME) ?>";
+<?php endif; ?>	
+
 dtUsersTable<?php if (isset($table_id)) echo "_{$table_id}" ?> = $('#<?php echo isset($table_id) ? $table_id: 'student_table' ?>').DataTable({
 	ajax: {
-		url: "<?php echo site_url("student/listing/{$module}/{$classroom}", SITE_SCHEME) ?>"
+		url: ajaxTableUrl,
+		error: function(xhr) {
+			console.error('Unable to retrieve proper ajax data');
+			console.log(xhr);
+			dtUsersTable<?php if (isset($table_id)) echo "_{$table_id}" ?>.draw();
+		}	
 	},
 	columns: [
 		{
@@ -43,6 +59,24 @@ dtUsersTable<?php if (isset($table_id)) echo "_{$table_id}" ?> = $('#<?php echo 
 				return name;
 			}
 		},
+		<?php if ($teacher_load) : ?>
+		{
+			title: "Mid Term",
+			data: 'mid_term'
+		},
+		{
+			title: "Final Term",
+			data: 'final_term'
+		},
+		{
+			title: "Final Grade",
+			data: 'final_grade'
+		},
+		{
+			title: "Remark",
+			data: 'remark'
+		},
+		<?php endif; ?>
 		{
 			title: "Department",
 			data: 'department',
@@ -133,6 +167,21 @@ dtUsersTable<?php if (isset($table_id)) echo "_{$table_id}" ?> = $('#<?php echo 
 		}
 	}
 });
+
+var semSelctr = $('select#semister');
+
+if (semSelctr.get(0))
+{
+	semSelctr.on('change', function() {
+		var ajxurl = "<?php echo site_url("student/listing/{$module}/{$classroom}/{$teacher_load}/first_sem", SITE_SCHEME) ?>";
+		if (this.value == 'second_sem') {
+			var ajxurl = "<?php echo site_url("student/listing/{$module}/{$classroom}/{$teacher_load}/second_sem", SITE_SCHEME) ?>";
+		}
+
+		dtUsersTable<?php if (isset($table_id)) echo "_{$table_id}" ?>.ajax.url(ajxurl);
+		dtUsersTable<?php if (isset($table_id)) echo "_{$table_id}" ?>.ajax.reload();
+	});
+}
 
 })(jQuery);
 

@@ -124,10 +124,17 @@ class Classroom extends CI_Controller {
 	 */
 	public function edit($id, $module = "", $teacher_load = '')
 	{
+		$backBtn = $this->layout->getBackBtn(site_url("classroom/{$module}"));
+
+		if ($teacher_load) 
+		{
+			$backBtn = $this->layout->getBackBtn(site_url("teacher_load/grades"));
+		}
+
 		$data = array(
 			'title'=>"Update classroom",
 			'ch_btns'=>array(
-				$this->layout->getBackBtn(site_url("classroom/{$module}")),
+				$backBtn,
 				array(
 					'name'=>'Delete <i class="fa fa-ch fa-trash"></i>',
 					'class'=>'btn-danger save_update',

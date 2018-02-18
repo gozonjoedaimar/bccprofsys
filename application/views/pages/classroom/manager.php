@@ -1,9 +1,26 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+<?php defined('BASEPATH') OR exit('No direct script access allowed');
+
+$teacher_load = isset($teacher_load) ? $teacher_load: "";
+
+?>
 
 <div class="row">
 	<?php if (isset($module) && ($module == 'teacher' || $module == 'grades')) : ?>
 	<div class="col-xs-12">
 		<h4>Classroom Students</h4>
+		<?php if ($module == 'grades' && $teacher_load) : ?>
+		<div class="form-group" style="width: 300px;">
+			<label for="semister">Semister</label>
+			<!-- <select id="semister" name="semister" class="form-control" >
+				<option value="first_sem" selected="">First Sem</option>
+				<option value="second_sem">Second Sem</option>
+			</select> -->
+			<?php
+				$selected = isset($form_data['semister']) ? $form_data['semister']: ""; 
+				$this->layout->get_select('semister', 'semister', [['code'=>'first_sem', 'name'=>'First Sem'],['code'=>'second_sem', 'name'=>'Second Sem']], $selected, TRUE);
+			?>
+		</div>
+		<?php endif; ?>
 		<?php $this->load->view('pages/student_listing', ['module'=>'classroom', 'classroom'=>$classroom, 'view'=>$module, 'table_id'=>'class_list']) ?>
 	</div>
 	<?php else: ?>

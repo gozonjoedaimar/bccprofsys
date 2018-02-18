@@ -13,6 +13,15 @@
 				<div class="col-xs-12">
 					Class: <?php echo $class; ?>
 				</div>
+				<div class="col-xs-12">
+					Semister:
+					<div style="width: 300px;">
+						<?php
+							$selected = isset($form_data['semister']) ? $form_data['semister']: ""; 
+							$this->layout->get_select('semister', 'semister', [['code'=>'first_sem', 'name'=>'First Sem'],['code'=>'second_sem', 'name'=>'Second Sem']], $selected, TRUE);
+						?>
+					</div>
+				</div>
 			</div>
 			<br>
 			<div class="row">
@@ -28,14 +37,14 @@
 				</div>
 				<div class="col-xs-3 ">
 					<div class="form-group">
-						<label for="first_sem">First Semister</label>
-						<input type="text" name="first_sem" id="first_sem" class="form-control" value="<?php if (isset($form_data['first_sem'])) echo $form_data['first_sem']; ?>">
+						<label for="mid_term">Mid Term</label>
+						<input type="text" name="mid_term" id="mid_term" class="form-control" value="<?php if (isset($form_data['mid_term'])) echo $form_data['mid_term']; ?>">
 					</div>		
 				</div>
 				<div class="col-xs-3 ">
 					<div class="form-group">
-						<label for="second_sem">Second Semister</label>
-						<input type="text" name="second_sem" id="second_sem" class="form-control" value="<?php if (isset($form_data['second_sem'])) echo $form_data['second_sem']; ?>">
+						<label for="final_term">Final Term</label>
+						<input type="text" name="final_term" id="final_term" class="form-control" value="<?php if (isset($form_data['final_term'])) echo $form_data['final_term']; ?>">
 					</div>		
 				</div>
 				<div class="col-xs-3 ">
@@ -58,7 +67,7 @@
 
 <script type="text/javascript">
 
-var saveForm = null, deleteData = null;
+var saveForm = null, deleteData = null, reload_grade = null;
 
 window.addEventListener('load', function() {
 	(function($) {
@@ -78,6 +87,54 @@ window.addEventListener('load', function() {
 
 
 	// $('.content-header-buttons').hide();
+
+	reload_grade = function() {
+		var selctr = $('select#semister');
+
+		if (selctr.get(0)) {
+			var sem = selctr.val();
+			var jxurl = "<?php echo site_url("grades/pull_grade/{$student_id}/{$teacher_load}") ?>/" + sem;
+
+			$.ajax({
+				url: jxurl,
+				error: function(xhr) {
+
+				},
+				success: function(res) {
+					var data = res.data;
+
+					if (data) {
+						$('[name=mid_term]').val(data.mid_term);
+						$('[name=final_term]').val(data.final_term);
+						$('[name=final_grade]').val(data.final_grade);
+						$('[name=remark]').val(data.remark);
+						$('[name=id]').val(data.id);
+					}
+					else {
+						$('[name=mid_term]').val("");
+						$('[name=final_term]').val("");
+						$('[name=final_grade]').val("");
+						$('[name=remark]').val("");
+						$('[name=id]').val("");
+					}
+				}
+			});
+		}
+	};
+
+	setTimeout(function() {
+		reload_grade();
+	}, 700);
+
+	var selectInp = $('select#semister');
+
+	if (selectInp.get(0)) 
+	{
+		selectInp.on('change', function() {
+			reload_grade();
+		});
+	}
+
 
 	})(jQuery);
 });

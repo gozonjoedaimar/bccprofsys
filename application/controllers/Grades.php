@@ -61,16 +61,17 @@ class Grades extends CI_Controller {
 	 *
 	 *
 	 */
-	public function add($student, $teacher_load = NULL)
+	public function add($student, $teacher_load = NULL, $semister = NULL)
 	{
 		$grade_info = $this->grades->get_grades($student, $teacher_load);
+		$teacher_load_info = $this->core->get_teacher_load($teacher_load);
 
 		if ($grade_info) {
-			redirect("grades/edit/{$student}/{$teacher_load}");
+			redirect("grades/edit/{$student}/{$teacher_load}/$semister");
 			return;
 		}
 
-		if ( ! $teacher_load) {
+		if ( ! $teacher_load || ! $teacher_load_info) {
 			redirect("grades/index/student/{$student}");
 			return;
 		}
@@ -95,7 +96,6 @@ class Grades extends CI_Controller {
 			'teacher_load'=>$teacher_load,
 		);
 
-		$teacher_load_info = $this->core->get_teacher_load($teacher_load);
 
 		$subject_info = $this->core->get_subject($teacher_load_info->subject);
 
@@ -138,7 +138,7 @@ class Grades extends CI_Controller {
 	 *
 	 *
 	 */
-	public function edit($student, $teacher_load)
+	public function edit($student, $teacher_load, $semister = "")
 	{
 
 		$grade_info = $this->grades->get_grades($student, $teacher_load);
@@ -180,7 +180,9 @@ class Grades extends CI_Controller {
 
 		// $data['form_data'] = $dbo->getData();
 		
-		$data['form_data'] = $grade_info;
+		// $data['form_data'] = $grade_info;
+
+		if ($semister) $data['form_data']['semister'] = $semister;
 
 		$teacher_load_info = $this->core->get_teacher_load($teacher_load);
 
@@ -193,11 +195,17 @@ class Grades extends CI_Controller {
 
 		$data['subject_name'] =  $subject_info ? $subject_info->code: "";
 		$data['student_name'] = "{$first_name} {$last_name}";
-		$data['class'] = "";
+		$data['class'] = $this->core->get_classroom_name($teacher_load_info->classroom);
 
 		$this->load->view('head', $data);
 		$this->load->view('pages/grades/form');
 		$this->load->view('footer');
+	}
+
+	public function pull_grade($student_id, $teacher_load, $semister)
+	{
+		$data = $this->grades->pull_grade($student_id, $teacher_load, $semister);
+		$this->output->set_content_type('json')->set_output(json_encode(['data'=>$data]));
 	}
 
 	/**
@@ -244,9 +252,9 @@ class Grades extends CI_Controller {
 	 *
 	 *
 	 */
-	public function listing($student = NULL)
+	public function listing($student = NULL, $semister = "")
 	{
-		$depts = $this->grades->listing($student);
+		$depts = $this->grades->listing($student, $semister);
 		$this->output->set_content_type('json')->set_output(json_encode(array('data'=>$depts)));
 	}
 }

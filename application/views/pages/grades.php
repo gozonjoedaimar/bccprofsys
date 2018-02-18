@@ -1,10 +1,18 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
-$student_id = isset($student_id) ? $student_id: "";
+$student_id = isset($student_id) ? $student_id: $this->core->get_session('user_id');
 
 ?>
 
 <div class="box">
 	<div class="box-body">
+		<div class="form-group" style="width: 300px;">
+			<label for="semister">Semister</label>
+			<?php
+				$selected = isset($form_data['semister']) ? $form_data['semister']: ""; 
+				$this->layout->get_select('semister', 'semister', [['code'=>'first_sem', 'name'=>'First Sem'],['code'=>'second_sem', 'name'=>'Second Sem']], $selected, TRUE);
+			?>
+		</div>
+
 		<table id="grades_table" class="table table-bordered table-striped">
 			<colgroup>
 				<col />
@@ -30,7 +38,7 @@ window.addEventListener('load', function() {
 
 dtGradesTable = $('#grades_table').DataTable({
 	ajax: {
-		url: "<?php echo site_url("grades/listing/{$student_id}", SITE_SCHEME) ?>"
+		url: "<?php echo site_url("grades/listing/{$student_id}/first_sem", SITE_SCHEME) ?>"
 	},
 	columns: [
 		{
@@ -42,12 +50,12 @@ dtGradesTable = $('#grades_table').DataTable({
 			data: 'subject_title'
 		},
 		{
-			title: "1st Semister",
-			data: 'first_sem'
+			title: "Mid Term",
+			data: 'mid_term'
 		},
 		{
-			title: "2nd Semister",
-			data: 'second_sem'
+			title: "Final Term",
+			data: 'final_term'
 		},
 		{
 			title: "Final Grades",
@@ -110,6 +118,23 @@ createDept = function() {
 <?php if ($this->core->get_session('role_code') == "student") : ?>
 $('.content-header-buttons').hide();
 <?php endif; ?>
+
+
+var semSelect = $('select#semister');
+
+if (semSelect.get(0))
+{
+	semSelect.on('change', function() {
+		var ajxurl = "<?php echo site_url("grades/listing/{$student_id}/first_sem", SITE_SCHEME) ?>";
+		if (this.value == 'second_sem') {
+			var ajxurl = "<?php echo site_url("grades/listing/{$student_id}/second_sem", SITE_SCHEME) ?>";
+		}
+
+		dtGradesTable.ajax.url(ajxurl);
+		dtGradesTable.ajax.reload();
+	});
+}
+
 
 })(jQuery);
 

@@ -25,9 +25,9 @@ class Student extends CI_Controller {
 		$this->load->view('footer');
 	}
 
-	public function listing($module = NULL, $id = NULL)
+	public function listing($module = NULL, $id = NULL, $teacher_load = NULL, $semister = NULL)
 	{
-		$data = $this->student->listing($module, $id);
+		$data = $this->student->listing($module, $id, $teacher_load, $semister);
 		$this->output->set_content_type('json')->set_output(json_encode(['data'=>$data]));
 	}
 
