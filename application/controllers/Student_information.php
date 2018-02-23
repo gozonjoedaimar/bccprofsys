@@ -132,7 +132,7 @@ class Student_information extends CI_Controller {
 	public function edit($id)
 	{
 		$data = array(
-			'title'=>"Update student_information",
+			'title'=>"Student Information",
 			'ch_btns'=>array(
 				$this->layout->getBackBtn(site_url('student_information')),
 				/*array(
