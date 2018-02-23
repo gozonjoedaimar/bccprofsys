@@ -134,7 +134,7 @@ class Student_information extends CI_Controller {
 		$data = array(
 			'title'=>"Student Information",
 			'ch_btns'=>array(
-				$this->layout->getBackBtn(site_url('student_information')),
+				// $this->layout->getBackBtn(site_url('student_information')),
 				/*array(
 					'name'=>'Delete <i class="fa fa-ch fa-trash"></i>',
 					'class'=>'btn-danger',
