@@ -73,12 +73,20 @@ class User_model extends CI_Model
 
 		$this->db->from('users');
 
-		if ($module && ! ($this->role_code == 'admin' || $this->role_code == 'registrar')) {
-			$this->db->where('department', $this->core->get_session('dept_code'));
-			$this->db->where('role', $module);
+		if ( ! $module == 'student') {
+			if ($module && ! ($this->role_code == 'admin' || $this->role_code == 'registrar')) {
+				$this->db->where('department', $this->core->get_session('dept_code'));
+				$this->db->where('role', $module);
+			}
+
+			$user_data = $this->db->get()->result_array();
+		}
+		else {
+			$sql = "SELECT * FROM `users` LEFT JOIN (SELECT `level`, `section`, `batch`, `student` FROM `class_list` INNER JOIN `classroom` ON `classroom`.`id` = `class_list`.`classroom`) `class_listing` ON `users`.`id` = `class_listing`.`student` WHERE `role` = 'student' GROUP BY id ORDER BY id asc, batch desc";
+
+			$user_data = $this->db->query($sql)->result_array();
 		}
 
-		$user_data = $this->db->get()->result_array();
 
 		$list = array();
 		foreach ($user_data as $user)
@@ -89,6 +97,22 @@ class User_model extends CI_Model
 			$user['role_code'] = $user['role'];
 			$user['department'] = $this->get_dept_name($user['dept_code']);
 			$user['role'] = $this->get_role_name($user['role_code']);
+
+			if ( $module == 'student' ) {
+				if (isset($user['level'])) {
+					$level = $user['level'];
+					$section = $user['section'];
+					$batch = $user['batch'];
+
+					$user['section_info'] = "{$level} - {$section} | {$batch}";
+					$user['year_section'] = "{$level} - {$section}";
+				}
+				else {
+					// $user['section_info'] = "n/a";
+					// $user['year_section'] = "n/a";
+				}
+			}
+
 			$list[] = $user;
 		}
 		return $list;
@@ -198,5 +222,27 @@ class User_model extends CI_Model
 		$this->db->where('id', $id);
 
 		return $this->db->get()->row();
+	}
+
+	public function get_level($level)
+	{
+		$result = $level;
+		switch ($level) {
+			case 1:
+				$result = "1st";
+				break;
+			case 2:
+				$result = "2nd";
+				break;
+			case 3:
+				$result = "3rd";
+				break;
+			
+			default:
+				$result = "{$level}th";
+				break;
+		}
+
+		return $result;
 	}
 }

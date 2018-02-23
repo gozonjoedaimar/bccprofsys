@@ -68,6 +68,16 @@ dtUsersTable = $('#users_table').DataTable({
 			title: "Record ID",
 			data: 'record_id'
 		},
+		<?php if ($module == "student") : ?>
+		{
+			title: "Year & Section",
+			data: 'year_section'
+		},
+		{
+			title: "Batch",
+			data: 'batch'
+		},
+		<?php endif; ?>
 		{
 			title: "Date Joined",
 			data: 'created_at',
@@ -117,7 +127,7 @@ dtUsersTable = $('#users_table').DataTable({
 	columnDefs: [
 		{
 			targets: ["_all"],
-			defaultContent: ""
+			defaultContent: "--"
 		}
 	],
 	autoWidth: false,

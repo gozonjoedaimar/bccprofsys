@@ -24,6 +24,11 @@
 				<!-- <url>/schedule</url> -->
 				<url>/teacher_load/student</url>
 			</link>
+			<link>
+				<name>Profile</name>
+				<icon>fa-user</icon>
+				<url>/student_information</url>
+			</link>
 		</menu>
 	</user>
 	<user>
