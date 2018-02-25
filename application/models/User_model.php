@@ -71,9 +71,10 @@ class User_model extends CI_Model
 		// $dbo = new Database_Object('users'); // Defined in application/third_party
 		// $user_data = $dbo->getAll();
 
-		$this->db->from('users');
 
-		if ( ! $module == 'student') {
+		if ( $module != 'student') {
+			$this->db->from('users');
+			
 			if ($module && ! ($this->role_code == 'admin' || $this->role_code == 'registrar')) {
 				$this->db->where('department', $this->core->get_session('dept_code'));
 				$this->db->where('role', $module);
