@@ -18,6 +18,7 @@ class Users extends CI_Controller
 		parent::__construct();
 		$this->load->model('user_model', 'user');
 		$this->load->model('department_model', 'department');
+		$this->load->model('teacher_load_model', 'teacher_load');
 
 		$this->role_code = $this->core->get_session('role_code');
 

@@ -142,10 +142,16 @@ class Student_model extends CI_Model
 				AND role = 'student'
 			";
 
+			$sql = "
+			SELECT *
+				{$semister_sql}
+				FROM `users` LEFT JOIN (SELECT `level`, `section`, `batch`, `student` FROM `class_list` INNER JOIN `classroom` ON `classroom`.`id` = `class_list`.`classroom`) `class_listing` ON `users`.`id` = `class_listing`.`student` WHERE `role` = 'student' and `users`.`id` IN (SELECT student FROM `class_list` WHERE class_list.classroom = {$id} ORDER BY `student` ASC)  -- GROUP BY id ORDER BY id asc, batch desc
+			";
+
 			if ($this->core->get_session('role_code') != 'admin')
 			{
 				$dept_code = $this->core->get_session('dept_code');
-				$sql .= "AND department = '{$dept_code}'";
+				$sql .= "\nAND department = '{$dept_code}'";
 			}
 
 			$list = $this->db->query($sql)->result_array();

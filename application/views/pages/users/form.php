@@ -101,6 +101,8 @@ $module = isset($module) ? $module: "";
 	</div>
 </form>
 
+<?php if ($module == "teacher") { $this->load->view('pages/teacher_load/teacher_students.php', ['teacher_id'=>$form_data['id']]); } ?>
+
 <script type="text/javascript">
 
 /* Define global variables */
