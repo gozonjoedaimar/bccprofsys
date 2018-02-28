@@ -38,6 +38,9 @@ dtClassroomTable = $('#classroom_table').DataTable({
 			title: "Year Level",
 			data: 'level',
 			render: function(data) {
+
+				return data;
+
 				var $txt = "n/a";
 				switch(parseInt(data)) {
 					case 1: $txt = "1st";

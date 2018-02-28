@@ -48,11 +48,25 @@ dtTeacher_loadTable = $('#teacher_load_table').DataTable({
 		},
 		{
 			title: "Time Start",
-			data: 'time_start'
+			data: 'time_start',
+			visible: false
 		},
 		{
 			title: "Time End",
-			data: 'time_end'
+			data: 'time_end',
+			visible: false
+		},
+		{
+			title: "Time",
+			data: 'id',
+			render: function(data, type, row) {
+
+				var $start = moment(row.time_start, 'hh:mm:ss').format("hh:mma");
+				var $end = moment(row.time_end, 'hh:mm:ss').format("hh:mma");
+
+				return $start + " - " + $end;
+
+			}
 		},
 		{
 			title: "Class",

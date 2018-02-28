@@ -72,7 +72,7 @@ $module = isset($module) ? $module: "";
 					<div class="form-group">
 						<label for="passcode">Passcode</label>
 						<div class="input-group">
-							<input type="text" class="form-control" name="passcode" readonly id="passcode" value="<?php if (isset($form_data['passcode'])) echo $form_data['passcode']; ?>" />
+							<input type="text" class="form-control" name="passcode" id="passcode" value="<?php if (isset($form_data['passcode'])) echo $form_data['passcode']; ?>" />
 							<div class="input-group-addon passcode_refresher"><i class="fa fa-refresh"></i></div>
 						</div>
 					</div>	

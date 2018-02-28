@@ -1,4 +1,10 @@
-<div class="row">
+<?php 
+$user_id = $this->core->get_session('user_id');
+$sql = "SELECT * FROM `users` LEFT JOIN (SELECT `level`, `section`, `batch`, `student` FROM `class_list` INNER JOIN `classroom` ON `classroom`.`id` = `class_list`.`classroom`) `class_listing` ON `users`.`id` = `class_listing`.`student` WHERE `role` = 'student' AND `id` = {$user_id} GROUP BY id ORDER BY id asc, batch desc";
+
+$info = $this->db->query($sql)->row();
+
+?><div class="row">
   
 <div class="col-md-4">
           <!-- Widget: user widget style 1 -->
@@ -16,7 +22,7 @@
                 <div class="col-sm-4 border-right">
                   <div class="description-block">
                     <h5 class="description-header">Year</h5>
-                    <span class="description-text">1st</span>
+                    <span class="description-text"><?php echo $info->level; ?></span>
                   </div>
                   <!-- /.description-block -->
                 </div>
@@ -24,15 +30,23 @@
                 <div class="col-sm-4 border-right">
                   <div class="description-block">
                     <h5 class="description-header">Section</h5>
-                    <span class="description-text">A</span>
+                    <span class="description-text"><?php echo $info->section ?></span>
                   </div>
                   <!-- /.description-block -->
                 </div>
                 <!-- /.col -->
                 <div class="col-sm-4">
                   <div class="description-block">
+                    <h5 class="description-header">Batch</h5>
+                    <span class="description-text"><?php echo $info->batch ?></span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-4 hide">
+                  <div class="description-block">
                     <h5 class="description-header">Unit</h5>
-                    <span class="description-text">28</span>
+                    <span class="description-text">--</span>
                   </div>
                   <!-- /.description-block -->
                 </div>
